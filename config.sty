@@ -1,0 +1,81 @@
+%PACKAGES 
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{amsmath,amsfonts,amssymb, amsthm}
+\RequirePackage{tikz}
+\RequirePackage{hyperref}
+\RequirePackage{wrapfig}
+\RequirePackage{fancyhdr}
+\RequirePackage[spanish]{babel}
+
+%SETUP
+\hypersetup{
+colorlinks= true,
+urlcolor= cyan,
+linkcolor= cyan!70!black,
+citecolor=red,
+pdftitle={OMI},
+bookmarks = true,
+pdfpagemode = FullScreen,
+}
+
+\fancyhf{}
+\fancyhead[L]{
+	\begin{minipage}{0.35\textwidth}
+	    \begin{flushleft}
+	        \noindent \includegraphics[scale=0.5]{Logo28OMI.png}
+	    \end{flushleft}
+	\end{minipage}
+}
+
+\fancyhead[R]{
+	\begin{minipage}{0.6\textwidth}
+        \begin{flushright}
+    		\noindent {\sffamily Selectivo final IOI 2024}\\
+            \noindent {\sffamily Online}\\
+    	      \noindent {\sffamily \today}
+        \end{flushright}
+	\end{minipage}
+}
+
+\cfoot{\thepage}
+
+\setlength{\headheight}{14mm}
+\pagestyle{fancy}
+\setlength\parindent{0pt}
+
+%Example box 
+\newlength{\exmpwidinf}
+\newlength{\exmpwidouf}
+\exmpwidinf=7.2cm
+\exmpwidouf=7.2cm
+\def\s@tm@cr@s{%
+\def\widthin##1{\exmpwidinf=##1\relax}\def\widthout##1{\exmpwidouf=##1\relax}%
+\def\stretchin##1{\advance\exmpwidinf by ##1\relax}%
+\def\stretchout##1{\advance\exmpwidouf by ##1\relax}%
+\def\testst@r{\@ifstar{{\tt [*] is deprected, you need not use it any more}}{}}%
+}%
+\newenvironment{example}[1][]{%
+\s@tm@cr@s\ttfamily\obeylines\obeyspaces\frenchspacing\testst@r#1%
+\newcommand{\exmp}[2]{%
+\begin{minipage}[t]{\exmpwidinf}\rightskip=0pt plus 1fill\relax##1\medskip\end{minipage}&%
+\begin{minipage}[t]{\exmpwidouf}\rightskip=0pt plus 1fill\relax##2\medskip\end{minipage}\\%
+\hline}%
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{1}{|c|}{\texttt{Entrada}}&%
+\multicolumn{1}{c|}{\texttt{Salida}}\\%
+\hline
+}
+{\end{tabular} \vspace{10pt}}
+
+\newcommand{\hh}[1]{\vspace{10pt} {\LARGE\bfseries\sffamily #1} \vspace{10pt}}
+
+\newcommand{\Problema}{\hh{Problema}}
+\newcommand{\Input}{\hh{Entrada}}
+\newcommand{\Output}{\hh{Salida}}
+\newcommand{\Detalles}{\hh{Detalles de Implementación}}
+\newcommand{\Ejemplo}{\hh{Ejemplo}}
+\newcommand{\Ejemplos}{\hh{Ejemplos}}
+\newcommand{\Limites}{\hh{Límites}}
+\newcommand{\Subtareas}{\hh{Subtareas}}
+
