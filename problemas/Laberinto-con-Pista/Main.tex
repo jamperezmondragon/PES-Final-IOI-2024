@@ -1,1 +1,88 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
 
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{Laberinto con Pista}
+    
+    {\itshape Este es un problema de comunicación}
+    
+    {\itshape El tiempo límite es 2 segundos}
+    
+    \vspace{10pt}
+
+    Hay un laberinto en un tablero de tamaño $N\times N$. Algunas celdas están bloqueadas y otras están vacías. Todas las celdas del borde del tablero están bloqueadas. Te puedes mover por las celdas vacías. En cada momento, solo puedes ver el estado de las 4 celdas vecinas, y debes decidir a qué celda vecina moverte. Tu objetivo es llegar de la esquina inferior izquierda a la esquina superior derecha del laberinto, en la menor cantidad de movimientos posibles. Se garantiza que dichas dos celdas están vacías, y que existe un camino de celdas vacías que las une. 
+
+    Además, tendrás la ayuda de Cesar. Al inicio del juego, Cesar te dará una pista inicial, que consiste de un arreglo binario. Cesar tendrá acceso al laberinto, y a partir de observarlo, generará una pista, que recibirás al inicio del juego. 
+
+    \hh{Problema}
+    
+    Implementa dos funciones. Una que reciba la información del laberinto y genere una pista, y otra función que dada la pista, y solamente la información de los vecinos de la celda actual, traverse el laberinto desde la esquina inferior izquierda hasta la esquina superior derecha.
+
+    \hh{Detalles de Implementación} 
+
+    Implementa dos funciones. La primera función, $Pista()$, recibe una variable $N$, el tamaño del laberinto, y un vector de vectores, $Laberinto$, con la información de las celdas bloqueadas y vacías. Esta función debe regresar la pista, como un vector de booleanos. La segunda función, $Juego()$, recibe un vector de vectores la pista que generó el primer programa, y tiene acceso a la función $mover()$ para interactuar con el laberinto. Cuando llamas dicha función, debes indicar un parámetro, que detalla el tipo de movimiento. Los parámetros y procesos disponibles son los siguientes:
+
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            {\bfseries Parámetro} & {\bfseries Proceso}\\
+            \hline
+             $mover(-1)$ & Se inicia el juego. \\
+             \hline
+             $mover(0)$ &  Te mueves de la casilla $(x, y)$ a la casilla $(x, y + 1)$. \\
+             \hline
+             $mover(1)$ & Te mueves de la casilla $(x, y)$ a la casilla $(x + 1, y)$.\\
+             \hline
+             $mover(2)$ & Te mueves de la casilla $(x, y)$ a la casilla $(x, y - 1)$.\\
+             \hline
+             $mover(3)$ & Te mueves de la casilla $(x, y)$ a la casilla $(x - 1, y)$.\\
+             \hline
+             $mover(4)$ & Se acaba el juego.\\
+             \hline
+        \end{tabular}
+    \end{center}
+
+    Cada vez que llames la función mover, el proceso puede ser exitoso o fallar.  Si te moviste a una casilla vacía, o finalizaste el juego en la casilla adecuada el proceso es exitoso. En cualquier otro caso, el proceso falla y el jurado mata el programa, y recibes 0 puntos en el caso que se esté procesando.
+    
+    
+    independientemente del parámetro, la función regresará  un arreglo de 4 booleanos. LLamemosle $a$. $a[i]$ es verdadero si $mover(i)$ sería un movimiento válido. 
+    
+    Lo siguiente es un template del programa que debes implementar:
+    
+    \begin{minted}{cpp}
+        #include "Laberinto.h"
+        using namespace std;
+        vector<bool> Pista(int N, vector<vector<bool>> Laberinto) {
+            vector<bool> Pista;
+            // Programa esta función.
+            return pista;
+        }
+        void Juego(vector<bool> Pista) {
+            // Programa esta función.
+        }
+    \end{minted}
+
+    \hh{Evaluación}
+
+    Digamos que la cantidad de Llamadas a la función $mover()$ es $M$, y el tamaño de la pista $P$.
+    
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Subtarea & Límite & Puntaje \\
+            \hline
+            Subtarea 1 &  & \\
+            \hline
+            Subtarea 2 &  & \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+\end{document}
