@@ -1,0 +1,66 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{Corrupción}
+    
+    {\itshape Este es un problema de Solo Salida}
+    
+    \vspace{10pt}
+
+    En la ciudad anti-OMI, hay demasiada corrupción. Una empresa de energía le paga al gobierno para que mantenga algunas de luces de la ciudad encendidas durante el día. Los políticos corruptos de anti-OMI siempre han dicho que es imposible apagarlas todas, pero tú sabes que no es así. Para desenmascarar su corrupción, quieres mandar un mensaje a los ciudadanos de anti-OMI. Entonces, te infiltraste en el centro de control del alambrado público de anti-OMI, con el objetivo de apagar todas las luces. Este centro de control fue construido convenientemente por la Maquiavélica Corporación de Energía, y los controles son completamente absurdos. Funcionan de la siguiente manera.
+    
+    Hay un botón para cada Luz de la ciudad, organizados al rededor de un círculo, y una palanca que envía las instrucciones de cambio de estado a las luces. Cada botón, al ser presionado, cambia el estado de su respectiva luz. Sin embargo, para mandar algunas instrucciones al sistema de alambrado, debes jalar la palanca. 
+    
+    Como la Corporación Maquiavélica de Energía quiere evitar que apagues las luces, cada vez que jalas la palanca, las conexiones detrás del círculo con los botones giran aleatoriamente. Es decir, las instrucciones se rotarán por algún valor $t$. Para cualquier botón $a_i$ que presionaste, al jalar la palanca, la instrucción le llegará a la luz $a_i + t$ (módulo la cantidad de luces), y esta cambiará de estado.
+    
+    Después de jalar la palanca, todas las instrucciones se envían al alambrado y los botones regresan al estado original. En ningún momento sabes cuánto rotan las conexiones, ni el estado de las luces (tampoco al inicio del proceso). Tu objetivo es hacer la menor cantidad de movimientos, que garanticen que en algún momento, todas las luces de la ciudad estén apagadas. 
+
+    Antes de entrar a la sala de control, descubriste que la cantidad de luces en la ciudad es igual a $2^{2^N}$ para algún entero $N$.
+
+    \hh{Problema}
+
+    Hay un arreglo binario escondido de tamaño $2^{2^N}$, para algún entero $0 \le N \le 4$. en un movimiento, Puedes hacerle xor con un arreglo binario. Sin embargo, antes de que esto suceda, al arreglo escondido se le aplicarán una cantidad arbitraria de shifts cíclicos. Encuentra la menor secuencia de movimientos que te permiten garantizar, que en algún momento el arreglo escondido tiene todos sus valores iguales a 0.
+
+    \hh{Detalles de salida} 
+
+    En la primera línea de los archivos que subas, debes imprimir un número $M$, la cantidad de movimientos que haces. 
+    En las siguientes $M$ líneas, debes imprimir cadenas binarias en cada una, que representan los movimientos.
+
+    \newpage
+    
+    \hh{Evaluación}
+    
+    Este problema consta de 5 casos, con distintos valores de $N$. Si la secuencia de movimientos dada no garantiza que en algún momento todas las luces estén apagadas, recibirás 0 puntos. De lo contrario, recibirás un puntaje entre 0 y el máximo puntaje de ese caso depentiendo de cuanto te acerques a la cantidad óptima de preguntas. 
+    
+
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Caso & Valor de $N$ & Máximo puntaje por Subtarea \\
+            \hline
+             caso 1 & $N = 0$ & 6 puntos.  \\
+            \hline
+             caso 2 & $N = 1$ & 9 puntos.  \\
+            \hline
+            caso 3 & $N = 2$ & 25 puntos. \\
+            \hline
+            caso 4 & $N = 3$ & 30 puntos. \\
+            \hline
+            caso 4 & $N = 4$ & 30 puntos. \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+        
+
+    
+    
+\end{document}
