@@ -1,0 +1,55 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{Determina Aristas}
+    
+    
+    \vspace{10pt}
+
+    
+    \hh{Problema}
+    
+        Te es dado un entero $N$ y $N - 1$ aristas. Estas aristas conectan $N$ vértices de tal forma que exista un camino entre cualesquiera dos vértices (es decir, forman un árbol). Debes especificar pesos para cada una de las aristas, de tal forma que se cumpla la siguiente propiedad en el árbol:
+        
+        Para cada entero $x$ entre $1$ y $\left\lfloor \frac{2N^2}{9} \right\rfloor$, existe una pareja de vértices $i, j$, tal que la suma de los pesos en el camino entre $i$ y $j$ es igual a $x$.
+    
+    \hh{Detalles de Implementación}
+
+        Debes implementar la función $Determinar\_aristas()$. Esta función recibe un entero $N$ y dos vectores $u$ y $v$, cada uno con $N - 1$ elementos. para cada $0 \le i \le N - 2$, $u[i]$ y $v[i]$ son los vértices que se conectan con la arista $i$. Esta función debe regresar un vector con $N - 1$ elementos, los pesos que elegiste.
+        La función se vería así:
+
+\begin{minted}{c++}
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> Determina_aristas(int N, vector<int> u, vector<int> v) {
+    // Implementa esta función.
+}
+\end{minted}
+
+    \hh{Límites}
+        \begin{itemize}
+            \item $1 \le N \le 2000$.
+            \item Los vectores $u$ y $v$ tendrán exactamente $N - 1$ elementos.
+            \item Para cada $0 \le i \le N - 2$, se cumple que $0 \le u[i] \neq v[i] \le N - 1$. 
+            \item Se garantiza que el grafo formado por las aristas es un árbol.
+        \end{itemize}
+    
+    \hh{Subtareas}
+
+
+    \begin{itemize}
+        \item (4 puntos) Obtendrás los puntos de esta subtarea si tu elección de aristas cumple con la condición para $1 \le x \le N$.
+        \item (32 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = i + 2$.
+        \item (32 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = \left\lfloor\frac{i}{2} \right\rfloor$.
+        \item (32 puntos) Sin restricciones adicionales.
+    \end{itemize}
+\end{document}
