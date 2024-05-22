@@ -13,8 +13,6 @@
     
     {\itshape Este es un problema de comunicación}
     
-    {\itshape El tiempo límite es 2 segundos}
-    
     \vspace{10pt}
 
     Hay un laberinto en un tablero de tamaño $N\times N$. Algunas celdas están bloqueadas y otras están vacías. Todas las celdas del borde del tablero están bloqueadas. Te puedes mover por las celdas vacías. En cada momento, solo puedes ver el estado de las 4 celdas vecinas, y debes decidir a qué celda vecina moverte. Tu objetivo es llegar de la esquina inferior izquierda a la esquina superior derecha del laberinto, en la menor cantidad de movimientos posibles. Se garantiza que dichas dos celdas están vacías, y que existe un camino de celdas vacías que las une. 
@@ -69,20 +67,18 @@
         }
     \end{minted}
 
-    \hh{Evaluación}
+    \hh{Subtareas}
 
     Digamos que la cantidad de Llamadas a la función $mover()$ es $M$, y el tamaño de la pista $P$.
-    
-    \begin{center}
-        \begin{tabular}{|c|c|c|}
-            \hline
-            Subtarea & Límite & Puntaje \\
-            \hline
-            Subtarea 1 &  & \\
-            \hline
-            Subtarea 2 &  & \\
-            \hline
-        \end{tabular}
-    \end{center}
 
+    \begin{itemize}
+        \item (5 puntos) No hay ningún límite sobre $M$ o $P$.
+        \item (15 puntos) Los valores de $M$ y $P$ deben ser mínimos para el laberinto dado. Se garantiza que no existe una celda vacía con cuatro celdas vecinas vacías.
+        \item (20 puntos) El valor de $M$ debe ser mínimo para el laberinto dado. No hay restricciones respecto a $P$.
+        \item (60 puntos) 
+        \begin{itemize}
+            \item Para obtener los 60 puntos, los valores de $M$ y $P$ deben ser mínimos para el laberinto dado.
+            \item Cualquier solución que tenga un $P$ mayor, será normalizada entre el valor óptimo y $2M$.
+        \end{itemize}
+    \end{itemize}
 \end{document}
