@@ -37,8 +37,7 @@ int main() {
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
                 infile >> dist[i][j];
-        infile >> conectividad;
-        MAX = (2*N*N + K - 1)/K;
+        infile >> conectividad >> MAX;
         cout << "Caso " << t << ": ";
         switch ((evalua(solve(N, K)))) {
             case 0:
