@@ -54,6 +54,10 @@ int main() {
                 cout << "Respuesta invalida.\n";
                 break;
         }
+
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                dist[i][j] = 0;
     }
     return 0;
 }
