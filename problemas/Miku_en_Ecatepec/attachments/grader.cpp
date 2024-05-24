@@ -2,9 +2,9 @@
 
 using namespace std;
 
-int query(int a, int b);
+int llamada(int u, int v);
 
-pair<int, int> solve(int N, int K) {
+pair<int, int> Miku_en_Ecatepec(int N, int K) {
     return make_pair(-1, -1);
 }
 
@@ -13,11 +13,11 @@ string filename = "sub0.1.in";
 int N, K, T, cnt, MAX, dist[100][100];
 bool conectividad;
 
-int query(int a, int b) {
+int llamada(int u, int v) {
     cnt++;
-    if (a < 0 || a > N - 1 || b < 0 || b > N - 1) return 1;
-    if (dist[a][b] > K || dist[a][b] == -1) return 1;
-    if (dist[a][b] == K) return 0;
+    if (u < 0 || u > N - 1 || v < 0 || v > N - 1) return 1;
+    if (dist[u][v] > K || dist[u][v] == -1) return 1;
+    if (dist[u][v] == K) return 0;
     return -1;
 }
 
@@ -39,7 +39,7 @@ int main() {
                 infile >> dist[i][j];
         infile >> conectividad >> MAX;
         cout << "Caso " << t << ": ";
-        switch ((evalua(solve(N, K)))) {
+        switch ((evalua(Miku_en_Ecatepec(N, K)))) {
             case 0:
                 cout << "Respuesta erronea.\n";
                 break;
