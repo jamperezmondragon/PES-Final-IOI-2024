@@ -10,7 +10,7 @@ pair<int, int> solve(int N, int K) {
 
 // GRADER
 string filename = "sub0.1.in";
-int N, K, cnt, MAX, dist[100][100];
+int N, K, T, cnt, MAX, dist[100][100];
 bool conectividad;
 
 int query(int a, int b) {
@@ -31,25 +31,29 @@ int evalua(pair<int, int> p) {
 
 int main() {
     ifstream infile(filename);
-    infile >> N >> K;
-    for (int i = 0; i < N; i++)
-        for (int j = 0; j < N; j++)
-            infile >> dist[i][j];
-    infile >> conectividad;
-    MAX = (2*N*N + K - 1)/K;
-    switch ((evalua(solve(N, K)))) {
-        case 0:
-            cout << "Respuesta erronea.";
-            break;
-        case 1:
-            cout << "Respuesta correcta :)";
-            break;
-        case 2:
-            cout << "Numero de preguntas excedido.";
-            break;
-        case 3:
-            cout << "Respuesta invalida.";
-            break;
+    infile >> T;
+    for (int t = 1; t <= T; t++) {
+        infile >> N >> K;
+        for (int i = 0; i < N; i++)
+            for (int j = 0; j < N; j++)
+                infile >> dist[i][j];
+        infile >> conectividad;
+        MAX = (2*N*N + K - 1)/K;
+        cout << "Caso " << t << ": ";
+        switch ((evalua(solve(N, K)))) {
+            case 0:
+                cout << "Respuesta erronea.\n";
+                break;
+            case 1:
+                cout << "Respuesta correcta :)\n";
+                break;
+            case 2:
+                cout << "Numero de preguntas excedido.\n";
+                break;
+            case 3:
+                cout << "Respuesta invalida.\n";
+                break;
+        }
     }
     return 0;
 }
