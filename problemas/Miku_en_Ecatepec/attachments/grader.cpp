@@ -36,7 +36,7 @@ int main() {
         for (int j = 0; j < N; j++)
             infile >> dist[i][j];
     infile >> conectividad;
-    MAX = (N*N + K - 1)/K;
+    MAX = (2*N*N + K - 1)/K;
     switch ((evalua(solve(N, K)))) {
         case 0:
             cout << "Respuesta erronea.";
