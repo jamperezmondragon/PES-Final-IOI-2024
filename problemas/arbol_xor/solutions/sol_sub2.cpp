@@ -10,7 +10,6 @@ long long int ans = 0;
 
 void dfs(int node = 0, int parent = -1) {
   dp[0][node] = 1, dp[1][node] = 0;
-  int an = 0;
   for (auto [child, W] : adj[node]) {
     if (child == parent) continue;
     dfs(child, node);
