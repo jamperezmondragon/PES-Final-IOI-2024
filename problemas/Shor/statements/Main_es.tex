@@ -1,0 +1,104 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{Los Brazos de Shor}
+    
+    
+    \vspace{10pt}
+
+    
+    \hh{Problema}
+
+        Te es dado un entero $N$ y una permutación $P$ del los números de $0$ a $N - 1$. Hay un robot llamado Shor (el hermano mayor del robot Sho). Tiene dos brazos que le ayudan a ordenar arreglos. En un movimiento, Shor puede elegir dos parejas de enteros $(i, j)$ y $(k, h)$, con $0 \le i \neq j, k \neq h \le N - 1$, e intercambiar los valores de las posiciones de cada pareja. Es decir, después de la operación, el valor $P[i]$ pasa a la posición $j$, el valor de $P[j]$ pasa a la posición $i$, el valor de $P[k]$ pasa a la posición $h$ y el valor $P[h]$ pasa a la posición $k$. Shor tiene dos restricciones al elegir los índices en sus movimientos. No puede elegir una pareja que solo consista de un índice distinto. Tampoco puede elegir dos parejas exactamente iguales en el mismo movimiento. 
+
+        Shor quiere ordenar la permutación dada, en la menor cantidad de movimientos. Ayuda a Shor a determinar si esto es posible, y además, la cantidad mínima de movimientos necesaria para lograrlo. 
+        
+        El proceso es un poco más complicado. Debes calcular la respuesta, no solamente para el arreglo original, si no también para el arreglo después de $Q$ actualizaciones. En cada actualización, te dan dos enteros $0 \le i \neq j \le N - 1$, y se intercambian los valores en $P[i]$ y $P[j]$. $P[i]$ pasa a la posición $j$ y $P[j]$ pasa a la posición $i$. Las actualizaciones son acumulativas. 
+
+        
+    \hh{Detalles de Implementación}
+
+        Debes implementar la función $El\_Robot\_Shor()$. Esta función recibe un entero $N$ el tamaño de la permutación, un entero $Q$ la cantidad de actualizaciones, y 3 vectores, $p$ y $u, v$. El vector $p$ tiene $N$ elementos, y representa el estado original de la permutación. Los vectores $u, v$ tienen $Q$ elementos, y representan los índices a intercambiar en cada actualización. Esta función debe regresar un vector de tamaño $Q + 1$ (llamemos dicho vector $ans$), $ans[i]$ debe ser igual a la cantidad mínima de movimientos necesarios para ordenar el arreglo después de la $i$-ésima actualización, o $-1$ si es imposible ($ans[0]$ es la respuesta para el arreglo original, antes de ninguna actualización).
+        La función se vería así:
+
+\begin{minted}{c++}
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> El_Robot_Shor(int N, int Q, vector<int> p,
+    vector<int> u, vector<int> v) {
+    // Implementa esta función.
+}
+    
+\end{minted}
+
+    El evaluador correrá una vez tu programa por cada caso.
+    
+    \hh{Ejemplos}
+
+               
+        {\itshape Ejemplo 1:}
+        \begin{itemize}
+            \item El evaluador llama la función $$El\_Robot\_Shor(4, 3, \{0, 1, 2, 3\}, \{0, 1, 2, 0\}, \{3, 3, 3, 3\})$$
+            la permutación es $\{0, 1, 2, 3 \}$. Después de cada actualización se ve así
+            \begin{center}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    Índice & Actualización & Permutación actual \\
+                    \hline
+                    \hline
+                     0 & $(0, 3)$ &  $\{3, 1, 2, 0\}$ \\
+                     \hline
+                     1 & $(1, 3)$ & $\{3, 0, 2, 1\}$ \\
+                     \hline
+                     2 & $(2, 3)$ & $\{3, 0, 1, 2\}$ \\
+                     \hline
+                     3 & $(0, 3)$ & $\{2, 0, 1, 3\}$ \\
+                     \hline
+                \end{tabular}
+            \end{center}
+            \item El vector que debe regresar la función es $\{0, -1, 1 , -1, 1\}$, pues:
+            \begin{itemize}
+                \item  El arreglo original está ordenado.
+                \item  Después de la primera actualización, se puede demostrar que es imposible hacer una secuencia de movimientos que ordene el arreglo.
+                \item Después de la segunda actualización, el arreglo puede ser ordenado con un movimiento, eligiendo las parejas $(0, 1)$ y $(1, 3)$.
+                \item  Después de la tercera actualización, se puede demostrar que es imposible hacer una secuencia de movimientos que ordene el arreglo.
+                \item Después de la cuarta actualización, el arreglo puede ser ordenado con un solo movimiento, eligiendo las parejas $(0, 1)$ y $(1, 2)$.
+            \end{itemize}
+            \item También obtendría la mitad de los puntos que represente este caso responder con un vector como $\{0, -1, 0, -1, 0\}$.
+        \end{itemize}
+        
+        {\itshape Ejemplo 2:}
+        \begin{itemize}
+            \item El evaluador llama la función $$El\_Robot\_Shor(10, 7, \{2, 3, 0, 6, 5, 1, 9, 8, 7, 4\}, \{0, 1, 9, 7, 8, 2, 0\}, \{3, 6, 3, 9, 3, 5, 3\})$$
+            \item El vector que debe regresar la función es $\{-1, 4, -1, 4, -1, 4, -1, 4\}$.
+        \end{itemize}
+        
+    \hh{Límites}
+        \begin{itemize}
+            \item $1 \le N, Q \le 2\times10^5$.
+            \item El vector $p$ tendrá exactamente $N$ elementos.
+            \item Los vectores $u, v$ tendrán exactamente $Q$ elementos.
+            \item Para cada $0 \le i \le N - 1$, se cumple que $0 \le p[i] < N$. 
+            \item Para cada $0 \le i \le Q - 1$, se cumple que $0 \le u[i] \neq v[i] < N$.
+            \item Se garantiza que el vector $p$ es una permutación de los números de $0$ a $N - 1$.
+        \end{itemize}
+    
+    \hh{Subtareas}
+
+    \begin{itemize}
+        \item (10 puntos) $N, Q \le 4$.
+        \item (20 puntos) Para todo $0 \le i \le N - 1$, se cumple que $p[i] = i$.
+        \item (30 puntos) $N, Q \le 2000$.
+        \item (40 puntos) Sin restricciones adicionales.
+    \end{itemize}
+    Además, para cada subtarea, si tu programa determina exitosamente si es posible o no ordenar la permutación (responde $-1$ cuando no es posible y un entero positivo cuando sí), obtendrás la mitad de los puntos en la subtarea correspondiente. 
+\end{document}
