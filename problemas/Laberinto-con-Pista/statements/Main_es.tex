@@ -17,7 +17,7 @@
 
     Hay un laberinto en un tablero de tamaño $N\times N$. Algunas celdas están bloqueadas y otras están vacías. Todas las celdas del borde del tablero están bloqueadas. Te puedes mover por las celdas vacías. En cada momento, solo puedes ver el estado de las 4 celdas vecinas, y debes decidir a qué celda vecina moverte. Tu objetivo es llegar de la esquina inferior izquierda a la esquina superior derecha del laberinto, en la menor cantidad de movimientos posibles. Se garantiza que dichas dos celdas están vacías, y que existe un camino de celdas vacías que las une. 
 
-    Además, tendrás la ayuda de Cesar. Al inicio del juego, Cesar te dará una pista inicial, que consiste de un arreglo binario. Cesar tendrá acceso al laberinto, y a partir de observarlo, generará una pista, que recibirás al inicio del juego. 
+    Además, tendrás la ayuda de César. Al inicio del juego, César te dará una pista inicial, que consiste de un arreglo binario. César tendrá acceso al laberinto, y a partir de observarlo, generará una pista, que recibirás al inicio del juego. 
 
     \hh{Problema}
     
@@ -50,13 +50,15 @@
     Cada vez que llames la función mover, el proceso puede ser exitoso o fallar.  Si te moviste a una casilla vacía, o finalizaste el juego en la casilla adecuada el proceso es exitoso. En cualquier otro caso, el proceso falla y el jurado mata el programa, y recibes 0 puntos en el caso que se esté procesando.
     
     
-    independientemente del parámetro, la función regresará  un arreglo de 4 booleanos. LLamemosle $a$. $a[i]$ es verdadero si $mover(i)$ sería un movimiento válido. 
+    independientemente del parámetro, la función regresará  un arreglo de 4 booleanos. LLamémosle $a$. $a[i]$ es verdadero si $mover(i)$ sería un movimiento válido. 
     
     Lo siguiente es un template del programa que debes implementar:
     
     \begin{minted}{cpp}
         #include "Laberinto.h"
+        #include <bits/stdc++.h>
         using namespace std;
+        
         vector<bool> Pista(int N, vector<vector<bool>> Laberinto) {
             vector<bool> Pista;
             // Programa esta función.
@@ -65,8 +67,68 @@
         void Juego(vector<bool> Pista) {
             // Programa esta función.
         }
+        
     \end{minted}
 
+    El evaluador correrá tu programa dos veces por cada caso.
+
+    \hh{Ejemplo}
+
+        \begin{itemize}
+            \item El evaluador corre tu programa, y llama la función
+            $$Pista(5, \{\{0, 0, 0, 0, 0\}, \{0, 1, 0, 1, 0\}, \{0, 1, 1, 1, 0\}, \{0, 1, 1, 1, 0\}, \{0, 0, 0, 0, 0\} \})$$
+            el laberinto es el siguiente:
+            \begin{center}
+                \begin{tabular}{|c|c|c|c|c|}
+                    \hline
+                     0 & 0 & 0 & 0 & 0 \\
+                     \hline
+                     0 & 1 & 0 & 1 & 0 \\
+                     \hline
+                     0 & 1 & 1 & 1 & 0 \\
+                     \hline
+                     0 & 1 & 1 & 1 & 0 \\
+                     \hline
+                     0 & 0 & 0 & 0 & 0 \\
+                     \hline
+                \end{tabular}
+            \end{center}
+        \item Tu programa regresaría algún vector binario, la pista. Digamos que regresa el vector $\{0, 0, 0\}$.
+
+        \item Entonces, el evaluador corre de nuevo tu programa, y llama la función 
+        $$Juego(\{0, 0, 0\})$$
+        \item Una interacción posible sería la siguiente:
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                 Función llamada & variable que regresa \\
+                 \hline
+                 $mover(-1)$ & \{0, 1, 1, 0\} \\
+                 \hline
+                 $mover(1)$ & \{0, 1, 1, 1\} \\
+                 \hline
+                 $mover(1)$ & \{0, 0, 1, 1\} \\
+                 \hline
+                 $mover(2)$ & \{1, 0, 1, 1\} \\
+                 \hline
+                 $mover(2)$ & \{1, 0, 0, 0\} \\
+                 \hline
+                 $mover(4)$ & \{1, 0, 0, 0\} \\
+                 \hline
+                 
+            \end{tabular}
+            
+        \end{center}
+        \item Dada esta secuencia de operaciones, es posible demostrar que en cualquier subtarea, obtendría todos los puntos que represente este caso. 
+        \end{itemize}
+    \hh{Consideraciones}
+
+        \begin{itemize}
+            \item $N \le 200$.
+            \item Los 4 bordes del tablero consisten de celdas bloqueadas.
+            \item Se garantiza que las celdas de las esquinas inferior izquierda y superior derecha están vacías, y que existe al menos un camino de celdas vacías entre ellas.
+        \end{itemize}
+        
     \hh{Subtareas}
 
     Digamos que la cantidad de Llamadas a la función $mover()$ es $M$, y el tamaño de la pista $P$.
@@ -78,7 +140,8 @@
         \item (60 puntos) 
         \begin{itemize}
             \item Para obtener los 60 puntos, los valores de $M$ y $P$ deben ser mínimos para el laberinto dado.
-            \item Cualquier solución que tenga un $P$ mayor, será normalizada entre el valor óptimo y $2M$.
+            \item Cualquier solución que tenga un $P$ mayor, será normalizada entre el valor óptimo y 2 veces el valor óptimo de $M$.
         \end{itemize}
     \end{itemize}
+    En cualquier caso, si tu programa tiene $P$ mayor que 2 veces el valor óptimo de $M$, recibirá 0 puntos por ese caso.
 \end{document}
