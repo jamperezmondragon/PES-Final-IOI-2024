@@ -23,16 +23,16 @@
     
     Después de jalar la palanca, todas las instrucciones se envían al alambrado y los botones regresan al estado original. En ningún momento sabes cuánto rotan las conexiones, ni el estado de las luces (tampoco al inicio del proceso). Tu objetivo es hacer la menor cantidad de movimientos, que garanticen que en algún momento, todas las luces de la ciudad estén apagadas. 
 
-    Antes de entrar a la sala de control, descubriste que la cantidad de luces en la ciudad es igual a $2^{2^N}$ para algún entero $N$.
+    Antes de entrar a la sala de control, descubriste que la cantidad de luces en la ciudad es igual a $2^{N}$ para algún entero $N$.
 
     \hh{Problema}
 
-    Hay un arreglo binario escondido de tamaño $2^{2^N}$, para algún entero $0 \le N \le 4$. en un movimiento, Puedes hacerle xor con un arreglo binario. Sin embargo, antes de que esto suceda, al arreglo escondido se le aplicarán una cantidad arbitraria de shifts cíclicos. Encuentra la menor secuencia de movimientos que te permiten garantizar, que en algún momento el arreglo escondido tiene todos sus valores iguales a 0.
+    Hay un arreglo binario escondido de tamaño $2^{N}$, para algún entero $0 \le N \le 4$. en un movimiento, Puedes hacerle xor con un arreglo binario. Sin embargo, antes de que esto suceda, al arreglo escondido se le aplicarán una cantidad arbitraria de shifts cíclicos. Encuentra la menor secuencia de movimientos que te permiten garantizar, que en algún momento el arreglo escondido tiene todos sus valores iguales a 0.
 
     \hh{Detalles de salida} 
 
     En la primera línea de los archivos que subas, debes imprimir un número $M$, la cantidad de movimientos que haces. 
-    En las siguientes $M$ líneas, debes imprimir cadenas binarias en cada una, que representan los movimientos.
+    En las siguientes $M$ líneas, debes imprimir cadenas binarias en cada una, que representan los movimientos, un 1 en las posiciones que cambias de estado, y un 0 en las que no.
 
     \newpage
     
