@@ -1,0 +1,91 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{Piedras Mágicas}
+
+    
+    \vspace{10pt}
+
+    
+    \hh{Problema}
+
+        Dado un entero positivo $N$, hay $N$ casillas en una fila, cada una a distancia 1 de sus adyacentes, numeradas de $1$ a $N$. Además, hay 2 piedras mágicas, que inicialmente están en las casillas $A$ y $B$. Hay $Q$ pedidos, en cada uno, se requiere que haya al menos una piedra mágica en una posición específica. Mover una piedra mágica de la posición $i$ a la posición $j$ cuesta $\lvert i - j \lvert$ unidades. Encuentra la cantidad mínima de unidades necesarias para satisfacer los $Q$ pedidos, en el orden establecido. 
+        
+    \hh{Detalles de Implementación}
+
+        Debes implementar la función $Piedras\_Magicas()$. Esta función recibe 4 enteros, $N, A, B$ y $Q$; la cantidad de casillas, las posiciones iniciales de las piedras mágicas y la cantidad de pedidos. Además, recibe un vector $a$, con $Q$ elementos. $a[i]$ indica la posición en la que debe haber una piedra mágica en el momento $i$. La función debe regresar un solo entero, la cantidad mínima de unidades necesarias para satisfacer todos los pedidos. 
+        Un ejemplo de programa se vería así:
+
+\begin{minted}{c++}
+#include <bits/stdc++.h>
+using namespace std;
+
+long long int Piedras_Magicas(int N, int A, int B, int Q) {
+    // Implementa esta función.
+}
+    
+\end{minted}
+
+    El evaluador correrá una vez tu programa por cada caso.
+    
+    \hh{Ejemplos}
+    
+        {\itshape Ejemplo 1: }
+        \begin{itemize}
+            \item El evaluador llama la función $$Piedras\_Magicas(10, 1, 10, 3, \{3, 6, 1\})$$
+            \item La función debe regresar $8$. Los pedidos pueden ser procesados de la siguiente manera:
+            \begin{itemize}
+                \item Mover la piedra de la posición 1 a la 3.
+                \item Mover la piedra de la posición 10 a la 6.
+                \item Mover la piedra de la posición 3 a la 1.
+            \end{itemize}
+        \end{itemize}
+
+        {\itshape Ejemplo 2:}
+        \begin{itemize}
+            \item El evaluador llama la función $$Piedras\_Magicas(11, 1, 11, 2, \{6, 1\})$$
+            \item La función debe regresar $5$. Los pedidos pueden ser procesados de la siguiente manera:
+            \begin{itemize}
+                \item Mover la piedra de la posición 11 a la posición 6.
+            \end{itemize}
+        \end{itemize}
+        
+        {\itshape Ejemplo 3:}
+        \begin{itemize}
+            \item El evaluador llama la función $$Piedras\_Magicas(11, 1, 11, 2, \{6, 11\})$$
+            \item La función debe regresar $5$. Los pedidos pueden ser procesados de la siguiente manera:
+            \begin{itemize}
+                \item Mover la piedra de la posición 1 a la posición 6.
+            \end{itemize}
+        \end{itemize}
+        
+        {\itshape Ejemplo 4:}
+        \begin{itemize}
+            \item El evaluador llama la función $$Piedras\_Magicas(11, 8, 1, 16, \{1, 1, 5, 1, 11, 4, 5, 2, 5, 3, 3, 3, 5, 5, 6, 7\} )$$
+            \item La función debe regresar $21$.
+        \end{itemize}
+        
+    \hh{Consideraciones}
+        \begin{itemize}
+            \item $1 \le  N, Q \le 2\times 10^5$.
+            \item $1 \le A, B \le N$.
+            \item Para todo $0 \le i \le Q - 1$, $1 \le a[i] \le N$.
+        \end{itemize}
+    
+    \hh{Subtareas}
+
+    \begin{itemize}
+        \item (10 puntos) $Q \le 20$.
+        \item (20 puntos) $N, Q \le 250$.
+        \item (30 puntos) $N, Q \le 2000$.
+        \item (40 puntos) Sin restricciones adicionales.
+    \end{itemize}
+\end{document}
