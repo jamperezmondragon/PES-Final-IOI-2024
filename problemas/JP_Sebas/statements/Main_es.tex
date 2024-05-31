@@ -1,0 +1,91 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{JP y sus alumnos}
+    
+    \hh{Problema}
+
+        A JP le tocó organizar un entrenamiento del PES. En este momento está llevando a cabo una actividad, en la que ordena a los $N$ alumnos en un círculo, $N$ es par. Les da un valor $a_i$ a cada alumno, tal que para cualesquiera dos alumnos adyacentes en el círculo $a_i$ y $a_{i + 1}$ (los índices se toman módulo $N$), se cumpla que $\lvert a_i - a_{i + 1} \lvert \ = 1$. Sebas quiere saber si existen dos alumnos, en posiciones diametralmente opuestas, tal que tengan el mismo valor. Es decir, si existe un entero $i$ tal que $a_{i} = a_{i + \frac{N}{2}}$. Para determinar esto, Sebas puede preguntarle su número a algún alumno. Pero esto es demasiado fácil para él, por lo que te retó a resolver su problema, en a lo más 60 preguntas.
+    
+    \hh{Detalles de Implementación}
+
+       Debes implementar la función {\itshape Reto\_Sebas()}. Esta función recibe un entero $N$, la cantidad de alumnos. La función debe regresar un valor $i$, que cumpla que $a_i = a_{i + \frac{N}{2}}$, o, si no existe dicho valor, regresa -1. Durante tu programa, podrás llamar la función {\itshape valor()}, esta función recibe un entero $0 \le i \le N - 1$, y regresa el valor de $a_i$.  Para poder llevar a cabo la interacción, debes incluir la librería \textit{``alumnos.h"}, con el comando \textit{\#include ``alumnos.h"}.
+       Un ejemplo de cómo se vería el programa, es el siguiente:
+    
+
+\begin{minted}{c++}
+#include "alumnos.h"
+#include <bits/stdc++.h>
+using namespace std;
+
+int Reto_Sebas(int N) {
+    // Implementa esta función.
+}
+\end{minted}
+
+    \hh{Ejemplo}
+    
+        {\itshape Ejemplo 1:}
+        \begin{itemize}
+            \item El evaluador llama la función 
+
+            \begin{center}
+                {\itshape Reto\_Sebas(8)}
+            \end{center}
+
+            \item En este caso, el arreglo de alumnos es el siguiente {\itshape \{0, 1, 2, 3, 2, 1, 0, -1\}}.
+            \item Un ejemplo de la interacción podría ser el siguiente:
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                     Función llamada & Respuesta \\
+                     \hline
+                     {\itshape valor(0)} & 0 \\
+                     \hline
+                     {\itshape valor(1)} & 1 \\
+                     \hline
+                     {\itshape valor(2)} & 2 \\
+                     \hline
+                     {\itshape valor(3)} & 3 \\
+                     \hline
+                     {\itshape valor(4)} & 2 \\
+                     \hline
+                     {\itshape valor(5)} & 1 \\
+                     \hline
+                     {\itshape valor(6)} & 0 \\
+                     \hline
+                     {\itshape valor(7)} & -1 \\
+                     \hline
+                \end{tabular}
+            \end{center}
+            \item Y una respuesta que daría un veredicto de aceptado, sería $1$, pues $a_1 = a_5$.
+        \end{itemize}
+
+        
+        
+    \hh{Consideraciones}
+        \begin{itemize}
+            \item $1 \le N \le 10^5$.
+            \item Para todo $0 \le i \le N - 1$, se cumple que $-10^9 \le a[i] \le 10^9$.
+            \item Para todo $0 \le i \le N - 1$, se cumple que $\lvert a[i] - a[(i + 1)\%N] \lvert \ = 1$ .
+            \item Si llamas la función {\itshape valor()} más de 60 veces, recibirás 0 puntos en ese caso.
+        \end{itemize}
+    
+    \hh{Subtareas}
+
+
+    \begin{itemize}
+        \item (5 puntos) $N \le 60$.
+        \item (20 puntos) Se garantiza que el arreglo $a$ es creciente y luego decreciente.
+        \item (35 puntos) Se garantiza que siempre hay respuesta.
+        \item (40 puntos) Sin restricciones adicionales.
+    \end{itemize}
+\end{document}
