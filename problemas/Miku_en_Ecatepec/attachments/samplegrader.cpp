@@ -2,9 +2,9 @@
 
 using namespace std;
 
-int llamada(int u, int v);
+int Dispositivo_Miku(int u, int v);
 
-pair<int, int> Miku_en_Ecatepec(int N, int K) {
+pair<int, int> Equipo_Sonrisas(int N, int K) {
     return make_pair(-1, -1);
 }
 
@@ -13,7 +13,7 @@ string filename = "sub0.1.in";
 int N, K, T, cnt, MAX, dist[100][100];
 bool conectividad;
 
-int llamada(int u, int v) {
+int Dispositivo_Miku(int u, int v) {
     cnt++;
     if (u < 0 || u > N - 1 || v < 0 || v > N - 1) return 1;
     if (dist[u][v] > K || dist[u][v] == -1) return 1;
