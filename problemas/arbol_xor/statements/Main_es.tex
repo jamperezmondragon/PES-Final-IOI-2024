@@ -18,9 +18,9 @@
     \hh{Problema}
     
         Te es dado un entero $N$ y $N - 1$ aristas con pesos. Estas aristas conectan $N$ vértices de tal forma que exista un camino entre cualesquiera dos vértices (es decir, forman un árbol).
-        Un camino simple en un grafo es definido como una secuencia de $k$ vértices $\{v_1, v_2, \cdots , v_k\}$, tal que para todo $1 \le i \le k - 1$, la arista $\{v_i, v_{i + 1}\}$ existe en el grafo. 
+        \footnote{Un camino simple en un grafo es definido como una secuencia de $k$ vértices $\{v_1, v_2, \cdots , v_k\}$, tal que para todo $1 \le i \le k - 1$, la arista $\{v_i, v_{i + 1}\}$ existe en el grafo. }
         
-        Para cada camino, definimos su peso como el {\bfseries xor} (or exclusivo, aquí consideramos la operación bit por bit) de cada uno de los pesos de las aristas que componen el camino. Determina la suma de los pesos de todos los caminos simples (no repiten aristas) del árbol (el camino $\{a, b\}$ se considera el mismo que $\{b, a\}$).
+        Para cada camino, definimos su peso como el {\bfseries xor} \footnote{or exclusivo, aquí consideramos la operación bit por bit} de cada uno de los pesos de las aristas que componen el camino. Determina la suma de los pesos de todos los caminos simples (no repiten aristas) del árbol \footnote{el camino $\{a, b\}$ se considera el mismo que $\{b, a\}$}.
         
     \hh{Detalles de Implementación}
 
@@ -50,7 +50,7 @@ long long Encuentra_xor(int N, vector<int> u, vector<int> v, vector<int> w) {
             el árbol en este caso se ilustra en la siguiente imagen:
             
             \begin{center}
-                \includegraphics[scale=0.3]{arbol_xor/ej1.png}
+                \includegraphics[scale=0.3]{ej1.png}
             \end{center}
             
             \item los xors de los caminos son:
@@ -85,7 +85,7 @@ long long Encuentra_xor(int N, vector<int> u, vector<int> v, vector<int> w) {
             \item El evaluador llama la función $$Encuentra\_xor(9, \{0, 1, 0, 1, 0, 2, 3, 3\}, \{1, 2, 3, 4, 5, 6, 7, 8\}, \{2, 3, 4, 5, 1, 0, 7, 2\})$$ el arbol en este caso es el siguiente:
 
             \begin{center}
-                \includegraphics[scale=0.5]{arbol_xor/ej2.png}
+                \includegraphics[scale=0.5]{ej2.png}
             \end{center}
             \item La función debe regresar 132.
             
@@ -94,7 +94,6 @@ long long Encuentra_xor(int N, vector<int> u, vector<int> v, vector<int> w) {
         
 
 
-    \eject
     
     \hh{Límites}
         \begin{itemize}
