@@ -1,8 +1,9 @@
 #include <bits/stdc++.h>
+#include "Sonrisas.h"
 
 using namespace std;
 
-pair<int, int> solve(int N, int K) {
+pair<int, int> Equipo_Sonrisas(int N, int K) {
     bool vis[N];
     for (int i = 0; i < N; i++) vis[i] = false;
     vector <int> v;
@@ -14,7 +15,7 @@ pair<int, int> solve(int N, int K) {
 
         for (int i = 0; i < N; i++) {
             if (vis[i]) continue;
-            int aux = query(i, nd);
+            int aux = Dispositivo_Miku(i, nd);
             if (aux < 1) vis[i] = true;
             if (aux == 0) v.push_back(i);
         }
