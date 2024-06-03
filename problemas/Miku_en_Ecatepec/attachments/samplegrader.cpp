@@ -39,7 +39,7 @@ int main() {
                 infile >> dist[i][j];
         infile >> conectividad >> MAX;
         cout << "Caso " << t << ": ";
-        switch ((evalua(Miku_en_Ecatepec(N, K)))) {
+        switch ((evalua(Equipo_Sonrisas(N, K)))) {
             case 0:
                 cout << "Respuesta erronea.\n";
                 break;
