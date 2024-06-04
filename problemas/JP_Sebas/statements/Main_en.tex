@@ -1,0 +1,94 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{JP and his students}
+    
+    \hh{Problem}
+
+        JP was tasked with organizing national camp. He is currently conducting an activity where he arranges the $N$ students in a circle, with $N$ even. He gives a value $a_i$ to each student, such that for any two adjacent students in the circle $a_i$ and $a_{i + 1}$ (indices are taken modulo $N$), it holds that $\lvert a_i - a_{i + 1} \lvert \ = 1$. Sebas wants to know if there are two students, in diametrically opposed positions, with the same value. That is, if there exists an integer $i$ such that $a_{i} = a_{i + \frac{N}{2}}$. In order to find out, Sebas may ask any student their number. But this too easy for him, so he challenged you to solve his problem in at most 60 queries.
+    
+    \hh{Implementation Details}
+
+       You must implement the function {\itshape Reto\_Sebas()}. This function receives an integer $N$, the number of students. The function should return a value $i$ that satisfies $a_i = a_{i + \frac{N}{2}}$, or, if no such value exists, return -1. During your program, you can call the function {\itshape valor()}, which receives an integer $0 \le i \le N - 1$ and returns the value of $a_i$. To carry out the interaction, you must include the library \textit{``alumnos.h"} with the command \textit{\#include ``alumnos.h"}.
+       An example of how the program would look is as follows:
+    
+
+\begin{minted}{c++}
+#include "alumnos.h"
+#include <bits/stdc++.h>
+using namespace std;
+
+int Reto_Sebas(int N) {
+    // Implement this function.
+}
+\end{minted}
+
+    The grader will call the function \textbf{multiple} times for each case.
+
+    \hh{Example}
+    
+        {\itshape Example 1:}
+        \begin{itemize}
+            \item The grader calls the function 
+
+            \begin{center}
+                {\itshape Reto\_Sebas(8)}
+            \end{center}
+
+            \item In this case, the array of students is the following {\itshape \{0, 1, 2, 3, 2, 1, 0, -1\}}.
+            \item An example of the interaction could be as follows:
+            \begin{center}
+                \begin{tabular}{|c|c|}
+                    \hline
+                     Function called & Response \\
+                     \hline
+                     {\itshape valor(0)} & 0 \\
+                     \hline
+                     {\itshape valor(1)} & 1 \\
+                     \hline
+                     {\itshape valor(2)} & 2 \\
+                     \hline
+                     {\itshape valor(3)} & 3 \\
+                     \hline
+                     {\itshape valor(4)} & 2 \\
+                     \hline
+                     {\itshape valor(5)} & 1 \\
+                     \hline
+                     {\itshape valor(6)} & 0 \\
+                     \hline
+                     {\itshape valor(7)} & -1 \\
+                     \hline
+                \end{tabular}
+            \end{center}
+            \item And returning $1$ would give an accepted veredict, since $a_1 = a_5$.
+        \end{itemize}
+
+        
+        
+    \hh{Constraints}
+        \begin{itemize}
+            \item $1 \le N \le 10^5$.
+            \item For all $0 \le i \le N - 1$, it holds that $-10^9 \le a[i] \le 10^9$.
+            \item For all $0 \le i \le N - 1$, it holds that $\lvert a[i] - a[(i + 1)\%N] \lvert \ = 1$.
+            \item If you call the function {\itshape valor()} more than 60 times during the function {\itshape Reto\_Sebas()}, you will receive 0 points for that case.
+            \item Let $S_N$ be the sum of all values of $N$ over each call to the function in a testcase. It is guaranteed that $S_N \le 10^5$.
+        \end{itemize}
+    
+    \hh{Subtasks}
+
+
+    \begin{itemize}
+        \item (5 points) $N \le 60$.
+        \item (20 points) It is guaranteed that the array $a$ is increasing and then decreasing.
+        \item (35 points) It is guaranteed that there is always an answer.
+        \item (40 points) No additional constraints.
+    \end{itemize}
+\end{document}
