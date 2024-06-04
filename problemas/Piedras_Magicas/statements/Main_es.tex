@@ -21,26 +21,30 @@
         
     \hh{Detalles de Implementación}
 
-        Debes implementar la función $Piedras\_Magicas()$. Esta función recibe 4 enteros, $N, A, B$ y $Q$; la cantidad de casillas, las posiciones iniciales de las piedras mágicas y la cantidad de pedidos. Además, recibe un vector $a$, con $Q$ elementos. $a[i]$ indica la posición en la que debe haber una piedra mágica en el momento $i$. La función debe regresar un solo entero, la cantidad mínima de unidades necesarias para satisfacer todos los pedidos. 
+        Debes implementar la función \textit{Piedras\_Magicas()}. Esta función recibe 4 enteros, $N, A, B$ y $Q$; la cantidad de casillas, las posiciones iniciales de las piedras mágicas y la cantidad de pedidos. Además, recibe un vector $a$, con $Q$ elementos. $a[i]$ indica la posición en la que debe haber una piedra mágica en el momento $i$. La función debe regresar un solo entero, la cantidad mínima de unidades necesarias para satisfacer todos los pedidos. 
         Un ejemplo de programa se vería así:
 
 \begin{minted}{c++}
 #include <bits/stdc++.h>
 using namespace std;
 
-long long int Piedras_Magicas(int N, int A, int B, int Q) {
+long long int Piedras_Magicas(int N, int A, int B, int Q, vector<int> a) {
     // Implementa esta función.
 }
     
 \end{minted}
 
-    El evaluador correrá una vez tu programa por cada caso.
+    El evaluador llamará la función \textbf{múltiples} veces por cada caso de prueba.
     
     \hh{Ejemplos}
     
         {\itshape Ejemplo 1: }
         \begin{itemize}
-            \item El evaluador llama la función $$Piedras\_Magicas(10, 1, 10, 3, \{3, 6, 1\})$$
+            \item El evaluador llama la función 
+            \begin{center}
+                \textit{Piedras\_Magicas(10, 1, 10, 3, \{3, 6, 1\})}
+            \end{center}
+            
             \item La función debe regresar $8$. Los pedidos pueden ser procesados de la siguiente manera:
             \begin{itemize}
                 \item Mover la piedra de la posición 1 a la 3.
@@ -51,7 +55,11 @@ long long int Piedras_Magicas(int N, int A, int B, int Q) {
 
         {\itshape Ejemplo 2:}
         \begin{itemize}
-            \item El evaluador llama la función $$Piedras\_Magicas(11, 1, 11, 2, \{6, 1\})$$
+            \item El evaluador llama la función 
+            \begin{center}
+                \textit{Piedras\_Magicas(11, 1, 11, 2, \{6, 1\})}
+            \end{center}
+            
             \item La función debe regresar $5$. Los pedidos pueden ser procesados de la siguiente manera:
             \begin{itemize}
                 \item Mover la piedra de la posición 11 a la posición 6.
@@ -60,7 +68,11 @@ long long int Piedras_Magicas(int N, int A, int B, int Q) {
         
         {\itshape Ejemplo 3:}
         \begin{itemize}
-            \item El evaluador llama la función $$Piedras\_Magicas(11, 1, 11, 2, \{6, 11\})$$
+            \item El evaluador llama la función 
+            \begin{center}
+                \textit{Piedras\_Magicas(11, 1, 11, 2, \{6, 11\})}
+            \end{center}
+            
             \item La función debe regresar $5$. Los pedidos pueden ser procesados de la siguiente manera:
             \begin{itemize}
                 \item Mover la piedra de la posición 1 a la posición 6.
@@ -69,7 +81,12 @@ long long int Piedras_Magicas(int N, int A, int B, int Q) {
         
         {\itshape Ejemplo 4:}
         \begin{itemize}
-            \item El evaluador llama la función $$Piedras\_Magicas(11, 8, 1, 16, \{1, 1, 5, 1, 11, 4, 5, 2, 5, 3, 3, 3, 5, 5, 6, 7\} )$$
+            \item El evaluador llama la función 
+
+            \begin{center}
+            \textit{Piedras\_Magicas(11, 8, 1, 16, \{1, 1, 5, 1, 11, 4, 5, 2, 5, 3, 3, 3, 5, 5, 6, 7\} )}
+            \end{center}
+            
             \item La función debe regresar $21$.
         \end{itemize}
         
@@ -78,14 +95,16 @@ long long int Piedras_Magicas(int N, int A, int B, int Q) {
             \item $1 \le  N, Q \le 2\times 10^5$.
             \item $1 \le A, B \le N$.
             \item Para todo $0 \le i \le Q - 1$, $1 \le a[i] \le N$.
+            \item Sea $S_N$ la suma de los valores de $N$ sobre todas las llamadas a la función. Se garantiza que $S_N \le 2\times10^5$.
+            \item Sea $S_Q$ la suma de los valores de $Q$ sobre todas las llamadas a la función. Se garantiza que $S_Q \le 2\times10^5$.
         \end{itemize}
     
     \hh{Subtareas}
 
     \begin{itemize}
-        \item (10 puntos) $Q \le 20$.
-        \item (20 puntos) $N, Q \le 250$.
-        \item (30 puntos) $N, Q \le 2000$.
+        \item (10 puntos) $Q, S_Q \le 20$.
+        \item (20 puntos) $N, S_N, Q, S_Q \le 250$.
+        \item (30 puntos) $N, S_N, Q, S_Q \le 2000$.
         \item (40 puntos) Sin restricciones adicionales.
     \end{itemize}
 \end{document}
