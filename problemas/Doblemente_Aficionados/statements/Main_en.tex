@@ -1,0 +1,110 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{The name of this problem makes no sense.}
+    
+    
+    \vspace{10pt}
+
+    
+    \hh{Problem}
+    
+        Given a positive integer $N$, consider an array $a$ of size $N$. Determine the size of the largest subarray\footnote{A subarray is an array obtained by removing some prefix or suffix from the original array.} of $a$ that has at least two values with maximum frequency. 
+    
+    \hh{Implementation Details}
+
+       You need to implement the function \textit{Doblemente\_Aficionados()}. This function receives an integer $N$ and a vector $a$, with $N$ elements. This function should return an integer, the maximum size of a subarray of $a$ that has at least two values with maximum frequency.
+        The function would look like this:
+
+\begin{minted}{c++}
+#include <bits/stdc++.h>
+using namespace std;
+
+int Doblemente_Aficionados(int N, vector<int> a) {
+    // Implement this function.
+}
+\end{minted}
+
+    The grader will run the function \textbf{multiple} times on each test case.
+
+    \hh{Examples}
+    
+        {\itshape Example 1:}
+        \begin{itemize}
+            \item The grader calls the function 
+
+            \begin{center}
+                {\itshape Doblemente\_Aficionados(6, \{1, 1, 2, 2, 1, 5\})}
+            \end{center}
+            
+            \item In this case, returning $5$ would give a verdict of accepted, because the subarray $a[1, 6] = \{1, 2, 2, 1, 5\}$ has a maximum frequency of $2$, and the values $2$ and $1$ each appear exactly $2$ times. The array $a$ does not meet the condition, as the value $1$ appears $3$ times, $2$ appears $2$ times, and $5$ appears once; there are not two values with maximum frequency. 
+        \end{itemize}
+        
+        {\itshape Example 2:}
+        \begin{itemize}
+            \item The grader calls the function 
+            
+            \begin{center}
+                {\itshape Doblemente\_Aficionados(10, \{2, 2, 2, 5, 4, 1, 3, 1, 2, 2\})}
+            \end{center}
+
+            \item In this case, returning $7$ would give a verdict of accepted.
+        \end{itemize}
+        
+        {\itshape Example 3:}
+        \begin{itemize}
+            \item The grader calls the function 
+            
+            \begin{center}
+                {\itshape Doblemente\_Aficionados(10, \{2, 2, 2, 7, 8, 2, 5, 2, 6, 6\})}
+            \end{center}
+
+            \item In this case, returning $7$ would give a verdict of accepted.
+        \end{itemize}
+
+        {\itshape Example 4:}
+        \begin{itemize}
+            \item The grader calls the function 
+
+            \begin{center}
+                {\itshape Doblemente\_Aficionados(10, \{1, 1, 1, 4, 4, 4, 5, 5, 5, 5\})}
+            \end{center}
+
+            \item In this case, returning $9$ would give a verdict of accepted.
+        \end{itemize}
+        
+        {\itshape Example 5:}
+        \begin{itemize}
+            \item The grader calls the function 
+
+            \begin{center}
+                {\itshape Doblemente\_Aficionados(1, \{1\})}
+            \end{center}
+
+            \item In this case, returning $0$ would give a verdict of accepted.
+        \end{itemize}
+        
+    \hh{Considerations}
+        \begin{itemize}
+            \item $1 \le N \le 2 \times 10^5$.
+            \item For all $0 \le i \le N - 1$, it holds that $1 \le a[i] \le N$.
+            \item Let $S_N$ be the sum of the values of $N$ over all calls to the function in a case. It holds that $S_N \le 2\times10^5$.
+        \end{itemize}
+    
+    \hh{Subtasks}
+
+    \begin{itemize}
+        \item (10 points) $N \le 2000$.
+        \item (20 points) It holds that there exists a subarray of the size of the answer, whose maximum frequency values are $1$ and $2$.
+        \item (30 points) For all $0 \le i \le N - 1$, it holds that $1 \le a[i] \le \min(N, 100)$.
+        \item (40 points) Without additional restrictions.
+    \end{itemize}
+\end{document}
