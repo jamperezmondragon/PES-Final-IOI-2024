@@ -33,6 +33,8 @@ int Doblemente_Aficionados(int N, vector<int> a) {
 }
 \end{minted}
 
+    El evaluador correrá la función \textbf{múltiples} veces en cada caso de prueba.
+
     \hh{Ejemplos}
     
         {\itshape Ejemplo 1:}
@@ -90,10 +92,11 @@ int Doblemente_Aficionados(int N, vector<int> a) {
             \item en este caso, regresar $0$, daría un veredicto de aceptado.
         \end{itemize}
         
-    \hh{Límites}
+    \hh{Consideraciones}
         \begin{itemize}
             \item $1 \le N \le 2 \times 10^5$.
             \item Para todo $0 \le i \le N - 1$, se cumple que $1 \le a[i] \le N$.
+            \item Sea $S_N$ la suma de los valores de $N$ sobre todas las llamadas a la función en un caso. Se cumple que $S_N \le 10^5$.
         \end{itemize}
     
     \hh{Subtareas}
