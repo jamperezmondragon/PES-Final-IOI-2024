@@ -28,5 +28,6 @@ long long Encuentra_xor(int N, vector<int> u, vector<int> v, vector<int> w) {
     adj[u[i]].push_back({v[i], w[i]});
   }
   for (int i = 0; i < 30; i++) dfs(i);
+  for (int i = 0; i < N: i++) adj[i].clear();
   return ans;
 }
