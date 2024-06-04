@@ -23,7 +23,7 @@
     
     \hh{Detalles de Implementación}
 
-        Debes implementar la función $Determinar\_aristas()$. Esta función recibe un entero $N$ y dos vectores $u$ y $v$, cada uno con $N - 1$ elementos. para cada $0 \le i \le N - 2$, $u[i]$ y $v[i]$ son los vértices que se conectan con la arista $i$. Esta función debe regresar un vector con $N - 1$ elementos, los pesos que elegiste.
+        Debes implementar la función \textit{Determinar\_aristas()}. Esta función recibe un entero $N$ y dos vectores $u$ y $v$, cada uno con $N - 1$ elementos. para cada $0 \le i \le N - 2$, $u[i]$ y $v[i]$ son los vértices que se conectan con la arista $i$. Esta función debe regresar un vector con $N - 1$ elementos, los pesos que elegiste.
         La función se vería así:
 
 \begin{minted}{c++}
@@ -35,12 +35,16 @@ vector<int> Determina_aristas(int N, vector<int> u, vector<int> v) {
 }
 \end{minted}
 
+    El evaluador correrá la función \textbf{múltiples} veces por cada caso de prueba.
+
     \hh{Ejemplo}
     
         {\itshape Ejemplo 1:}
         \begin{itemize}
             \item El evaluador llama la función 
-            $$Determina\_aristas(6, \{0, 1, 2, 2, 1\}, \{1, 2, 3, 4, 5\})$$
+            \begin{center}
+                \textit{Determina\_aristas(6, \{0, 1, 2, 2, 1\}, \{1, 2, 3, 4, 5\})}
+            \end{center}
             el árbol en este caso es el siguiente:
             \begin{center}
                 \includegraphics[scale=0.25]{ej1.png}
@@ -63,21 +67,23 @@ vector<int> Determina_aristas(int N, vector<int> u, vector<int> v) {
         \end{itemize}
         k
 
-    \hh{Límites}
+    \hh{Consideraciones}
         \begin{itemize}
             \item $1 \le N \le 2000$.
             \item Los vectores $u$ y $v$ tendrán exactamente $N - 1$ elementos.
             \item Para cada $0 \le i \le N - 2$, se cumple que $0 \le u[i] \neq v[i] \le N - 1$. 
             \item Se garantiza que el grafo formado por las aristas es un árbol.
+            \item sea $S_N$ la suma de los valores de $N$ sobre todas las llamadas a la función en un caso. Se cumple que $S_N \le 2000$.
         \end{itemize}
     
     \hh{Subtareas}
 
 
     \begin{itemize}
-        \item (4 puntos) Obtendrás los puntos de esta subtarea si tu elección de aristas cumple con la condición para $1 \le x \le N$.
-        \item (32 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = i + 2$.
-        \item (32 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = \left\lfloor\frac{i}{2} \right\rfloor$.
-        \item (32 puntos) Sin restricciones adicionales.
+        \item (6 puntos) $N \le 4$.
+        \item (7 puntos) Obtendrás los puntos de esta subtarea si tu elección de aristas cumple con la condición para $1 \le x \le N$.
+        \item (22 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = i + 2$.
+        \item (25 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = \left\lfloor\frac{i}{2} \right\rfloor$.
+        \item (40 puntos) Sin restricciones adicionales.
     \end{itemize}
 \end{document}
