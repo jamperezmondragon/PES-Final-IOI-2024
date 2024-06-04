@@ -23,6 +23,7 @@ void dfs(int bit, int node = 0, int parent = -1) {
 }
 
 long long Encuentra_xor(int N, vector<int> u, vector<int> v, vector<int> w) {
+  ans = 0;
   for (int i = 0; i < N - 1; i++) {
     adj[v[i]].push_back({u[i], w[i]});
     adj[u[i]].push_back({v[i], w[i]});
