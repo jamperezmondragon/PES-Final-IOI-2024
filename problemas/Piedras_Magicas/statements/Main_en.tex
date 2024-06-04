@@ -1,0 +1,110 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{Magic Stones}
+
+    
+    \vspace{10pt}
+
+    
+    \hh{Problem}
+
+        Given a positive integer $N$, there are $N$ cells in a row, each one unit away from its adjacent cells, numbered from $1$ to $N$. Additionally, there are 2 magic stones, initially located in cells $A$ and $B$. There are $Q$ queries, and after each query, there must be at least one magic stone in a specific position. Moving a magic stone from position $i$ to position $j$ costs $\lvert i - j \lvert$ units. Find the minimum number of cost units needed to satisfy the $Q$ queries, in the given order.
+        
+    \hh{Implementation Details}
+
+        You must implement the function \textit{Piedras\_Magicas()}. This function receives 4 integers, $N, A, B,$ and $Q$; the number of cells, the initial positions of the magic stones, and the number of queries, respectively. Additionally, it receives a vector $a$, with $Q$ elements. $a[i]$ indicates the position where there must be a magic stone at moment $i$. The function must return a single integer, the minimum number of units needed to satisfy all queries. 
+        A sample program would look like this:
+
+\begin{minted}{c++}
+#include <bits/stdc++.h>
+using namespace std;
+
+long long int Piedras_Magicas(int N, int A, int B, int Q, vector<int> a) {
+    // Implement this function.
+}
+    
+\end{minted}
+
+    The grader will call the function \textbf{multiple} times for each test case.
+    
+    \hh{Examples}
+    
+        {\itshape Example 1: }
+        \begin{itemize}
+            \item The grader calls the function 
+            \begin{center}
+                \textit{Piedras\_Magicas(10, 1, 10, 3, \{3, 6, 1\})}
+            \end{center}
+            
+            \item The function should return $8$. The queries can be processed as follows:
+            \begin{itemize}
+                \item Move the stone from position 1 to position 3.
+                \item Move the stone from position 10 to position 6.
+                \item Move the stone from position 3 to position 1.
+            \end{itemize}
+        \end{itemize}
+
+        {\itshape Example 2:}
+        \begin{itemize}
+            \item The grader calls the function 
+            \begin{center}
+                \textit{Piedras\_Magicas(11, 1, 11, 2, \{6, 1\})}
+            \end{center}
+            
+            \item The function should return $5$. The queries can be processed as follows:
+            \begin{itemize}
+                \item Move the stone from position 11 to position 6.
+            \end{itemize}
+        \end{itemize}
+        
+        {\itshape Example 3:}
+        \begin{itemize}
+            \item The grader calls the function 
+            \begin{center}
+                \textit{Piedras\_Magicas(11, 1, 11, 2, \{6, 11\})}
+            \end{center}
+            
+            \item The function should return $5$. The queries can be processed as follows:
+            \begin{itemize}
+                \item Move the stone from position 1 to position 6.
+            \end{itemize}
+        \end{itemize}
+        
+        {\itshape Example 4:}
+        \begin{itemize}
+            \item The grader calls the function 
+
+            \begin{center}
+            \textit{Piedras\_Magicas(11, 8, 1, 16, \{1, 1, 5, 1, 11, 4, 5, 2, 5, 3, 3, 3, 5, 5, 6, 7\} )}
+            \end{center}
+            
+            \item The function should return $21$.
+        \end{itemize}
+        
+    \hh{Constraints}
+        \begin{itemize}
+            \item $1 \le N, Q \le 2\times 10^5$.
+            \item $1 \le A, B \le N$.
+            \item For all $0 \le i \le Q - 1$, $1 \le a[i] \le N$.
+            \item Let $S_N$ be the sum of the values of $N$ over all function calls. It is guaranteed that $S_N \le 2\times10^5$.
+            \item Let $S_Q$ be the sum of the values of $Q$ over all function calls. It is guaranteed that $S_Q \le 2\times10^5$.
+        \end{itemize}
+    
+    \hh{Subtasks}
+
+    \begin{itemize}
+        \item (10 points) $Q, S_Q \le 20$.
+        \item (20 points) $N, S_N, Q, S_Q \le 250$.
+        \item (30 points) $N, S_N, Q, S_Q \le 2000$.
+        \item (40 points) No additional constraints.
+    \end{itemize}
+\end{document}
