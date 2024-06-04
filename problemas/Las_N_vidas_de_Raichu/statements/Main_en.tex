@@ -1,0 +1,92 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{amsmath}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{The $N$ Lives of Raichu}
+    
+    {\itshape This is a Communication problem}
+    
+    \vspace{10pt}
+
+        Raichu is a very friendly and affectionate cat who has lived many lives. But the end has come, and you must help Raichu determine which is the last of its lives.
+
+    \hh{Problem}
+
+        The jury has a binary array $a$ of size $M$, initially all values are $0$. You must implement the function {\itshape Raichu()}. Your program will be executed $N$ times, and each time, the jury will call the function {\itshape Raichu()} with the parameters $N$ and $M$. Your program can call the functions {\itshape modificar()} and {\itshape leer()}. With these functions, you can modify the value of one of the positions of array $a$, or read a position of the array $a$. The function {\itshape Raichu()} returns a boolean and must return true only on the $N$-th execution of the program. The only information you have is the array $a$. Help Raichu determine which is its $N$-th and last life.
+
+    \hh{Implementation Details}
+
+        You must implement the function {\itshape Raichu()}. This function receives two integers, $N$ and $M$, and returns a boolean. Additionally, you can call the function {\itshape leer()}, which receives an integer $0 \le i \le M - 1$ and returns the current value of $a[i]$, and the function {\itshape modificar()} which receives an integer $0 \le i \le M - 1$ and an integer $0 \le x \le 1$, and makes $a[i] = x$.
+        To carry out the interaction, you must include the library \textit{``Raichu.h"} with the command \textit{\#include ``Raichu.h"}.
+
+        An example of how the program would look is as follows:
+
+\begin{minted}{c++}
+
+#include "Raichu.h"
+#include <bits/stdc++.h>
+using namespace std;
+
+bool Raichu(int N, int M) {
+    // Implement this function.
+}
+    
+\end{minted}
+    
+
+    \hh{Evaluation Criteria}
+
+        Each test case consists of $N, M$ and ten fixed evaluation parameters $a_1, a_2, \cdots, a_{10}$.
+
+        If your program does not return true exactly on the last execution, and false on all other executions, you will receive 0 points.
+
+        For each test case, we define $C_1$ as the maximum number of different positions in the binary array that you involve in each time your program is executed. 
+        
+        We say that during an execution you involved position $i$, if you called the function {\itshape modificar()} or {\itshape leer()} with position $i$ (if you call both it still counts as only one position). 
+        
+        We also define $C_2$, as the maximum number of different positions in the binary array that you involve each time your program is executed, not counting the first execution.
+        
+        If your program effectively solves the problem, you will receive points based on:
+        
+        
+        \begin{itemize}
+            \item In the first test case, you will receive one point for each evaluation parameter $a_i$ that satisfies $C_1 \le a_i$.
+            \item In the second test case, you will receive 1 point for each evaluation parameter $a_i$ that satisfies $C_1 \le a_i$, and 1 point for each one that satisfies $C_2 \le a_i$.
+            \item In the third test case, you will receive 2 points for each evaluation parameter $a_i$ that satisfies $C_1 \le a_i$, and 1 point for each one that satisfies $C_2 \le a_i$.
+            \item In the fourth test case, you will receive 2 points for each evaluation parameter $a_i$ that satisfies $C_1 \le a_i$, and 2 points for each one that satisfies $C_2 \le a_i$.
+            
+        \end{itemize}
+
+
+        In the following table, the parameters and specific considerations for each test case are listed:
+        
+        \null
+        
+        \begin{tabular}{|c|c|c|c|*{10}{c|}c|}
+            \hline
+            \textbf{Test Case} & \textbf{Points} & $N$ & $M$ & $a_1$ & $a_2$ & $a_3$ & $a_4$ & $a_5$ & $a_6$ & $a_7$ & $a_8$ & $a_9$ & $a_{10}$ & \textbf{Time} \\
+            \hline
+            1 & 10 & $2^{10}$ & 10 & 10 & 10 & 10 & 10 & & 10 & 10 & 10 & 10 & 10 & 3s \\
+            \cline{1-8} \cline{10-15}
+            2 & 20 & $2^{16}$ & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{10} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & 4s \\
+            \cline{1-3} \cline{15-15}
+            3 & 30 & $2^{20}$ & $10^5$ & 14 & 13 & 12 & 11 & & 9 & 8 & 7 & 6 & 6 & 5s \\
+            \cline{1-3} \cline{15-15}
+            4 & 40 & $2^{26}$ & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & \multirow{2}{*}{} & 14s \\
+            \hline
+        \end{tabular}
+     
+
+        
+\end{document}
