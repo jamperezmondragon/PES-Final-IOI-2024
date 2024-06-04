@@ -26,7 +26,7 @@
         
     \hh{Detalles de Implementación}
 
-        Debes implementar la función $El\_Robot\_Shor()$. Esta función recibe un entero $N$ el tamaño de la permutación, un entero $Q$ la cantidad de actualizaciones, y 3 vectores, $p$ y $u, v$. El vector $p$ tiene $N$ elementos, y representa el estado original de la permutación. Los vectores $u, v$ tienen $Q$ elementos, y representan los índices a intercambiar en cada actualización. Esta función debe regresar un vector de tamaño $Q + 1$ (llamemos dicho vector $ans$), $ans[i]$ debe ser igual a la cantidad mínima de movimientos necesarios para ordenar el arreglo después de la $i$-ésima actualización, o $-1$ si es imposible ($ans[0]$ es la respuesta para el arreglo original, antes de ninguna actualización).
+        Debes implementar la función \textit{El\_Robot\_Shor()}. Esta función recibe un entero $N$ el tamaño de la permutación, un entero $Q$ la cantidad de actualizaciones, y 3 vectores, $p$ y $u, v$. El vector $p$ tiene $N$ elementos, y representa el estado original de la permutación. Los vectores $u, v$ tienen $Q$ elementos, y representan los índices a intercambiar en cada actualización. Esta función debe regresar un vector de tamaño $Q + 1$ (llamemos dicho vector $ans$), $ans[i]$ debe ser igual a la cantidad mínima de movimientos necesarios para ordenar el arreglo después de la $i$-ésima actualización, o $-1$ si es imposible ($ans[0]$ es la respuesta para el arreglo original, antes de ninguna actualización).
         La función se vería así:
 
 \begin{minted}{c++}
@@ -40,14 +40,18 @@ vector<int> El_Robot_Shor(int N, int Q, vector<int> p,
     
 \end{minted}
 
-    El evaluador correrá una vez tu programa por cada caso.
+    El evaluador llamará la función \textbf{múltiples} veces por caso.
     
     \hh{Ejemplos}
 
                
         {\itshape Ejemplo 1:}
         \begin{itemize}
-            \item El evaluador llama la función $$El\_Robot\_Shor(4, 3, \{0, 1, 2, 3\}, \{0, 1, 2, 0\}, \{3, 3, 3, 3\})$$
+            \item El evaluador llama la función 
+            \begin{center}
+                \textit{El\_Robot\_Shor(4, 3, \{0, 1, 2, 3\}, \{0, 1, 2, 0\}, \{3, 3, 3, 3\})}
+            \end{center}
+            
             la permutación es $\{0, 1, 2, 3 \}$. Después de cada actualización se ve así
             \begin{center}
                 \begin{tabular}{|c|c|c|}
@@ -78,7 +82,11 @@ vector<int> El_Robot_Shor(int N, int Q, vector<int> p,
         
         {\itshape Ejemplo 2:}
         \begin{itemize}
-            \item El evaluador llama la función $$El\_Robot\_Shor(10, 7, \{2, 3, 0, 6, 5, 1, 9, 8, 7, 4\}, \{0, 1, 9, 7, 8, 2, 0\}, \{3, 6, 3, 9, 3, 5, 3\})$$
+            \item El evaluador llama la función 
+            \begin{center}
+                \textit{El\_Robot\_Shor(10, 7, \{2, 3, 0, 6, 5, 1, 9, 8, 7, 4\}, \{0, 1, 9, 7, 8, 2, 0\}, \{3, 6, 3, 9, 3, 5, 3\})}
+            \end{center}
+            
             \item El vector que debe regresar la función es $\{-1, 4, -1, 4, -1, 4, -1, 4\}$.
         \end{itemize}
         
@@ -90,14 +98,16 @@ vector<int> El_Robot_Shor(int N, int Q, vector<int> p,
             \item Para cada $0 \le i \le N - 1$, se cumple que $0 \le p[i] < N$. 
             \item Para cada $0 \le i \le Q - 1$, se cumple que $0 \le u[i] \neq v[i] < N$.
             \item Se garantiza que el vector $p$ es una permutación de los números de $0$ a $N - 1$.
+            \item Sea $S_N$ la suma de los valores de $N$ para cada llamada de la función en un caso de prueba. se garantiza que $S_N \le 2 \times 10^5$.
+            \item Sea $S_Q$ la suma de los valores de $Q$ para cada llamada de la función en un caso de prueba. se garantiza que $S_Q \le 2 \times 10^5$.
         \end{itemize}
     
     \hh{Subtareas}
 
     \begin{itemize}
-        \item (10 puntos) $N, Q \le 4$.
+        \item (10 puntos) $N, S_N, Q, S_Q \le 4$.
         \item (20 puntos) Para todo $0 \le i \le N - 1$, se cumple que $p[i] = i$.
-        \item (30 puntos) $N, Q \le 2000$.
+        \item (30 puntos) $N, S_N, Q, S_Q \le 2000$.
         \item (40 puntos) Sin restricciones adicionales.
     \end{itemize}
     Además, para cada subtarea, si tu programa determina exitosamente si es posible o no ordenar la permutación (responde $-1$ cuando no es posible y un entero positivo cuando sí), obtendrás la mitad de los puntos en la subtarea correspondiente. 
