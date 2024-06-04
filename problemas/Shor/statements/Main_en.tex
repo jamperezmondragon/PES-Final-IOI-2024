@@ -1,0 +1,109 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{Shor's Arms}
+    
+    \vspace{10pt}
+
+    \hh{Problem}
+
+        You are given an integer $N$ and a permutation $P$ of the numbers $0$ through $N - 1$. There is a robot called Shor (the older brother of the robot Sho). It has two arms that help it sort arrays. In one move, Shor can choose two pairs of integers $(i, j)$ and $(k, h)$, with $0 \le i \neq j, k \neq h \le N - 1$, and swap the values at the positions of each pair. That is, after the operation, the value $P[i]$ goes to position $j$, the value of $P[j]$ goes to position $i$, the value of $P[k]$ goes to position $h$, and the value of $P[h]$ goes to position $k$. Shor has two restrictions when choosing the indices in its moves. It cannot choose a pair that consists of only one distinct index. It also cannot choose two identical pairs in the same move.
+
+        Shor wants to sort the given permutation in the fewest number of moves. Help Shor determine if this is possible, and if so, the minimum number of moves needed to achieve it.
+
+        The process is a bit more complicated. You must calculate the answer not only for the original array, but also for the array after $Q$ updates. In each update, you are given two integers $0 \le i \neq j \le N - 1$, and the values at $P[i]$ and $P[j]$ are swapped. $P[i]$ goes to position $j$ and $P[j]$ goes to position $i$. The updates are cumulative.
+        
+    \hh{Implementation Details}
+
+        You must implement the function \textit{El\_Robot\_Shor()}. This function receives an integer $N$ the size of the permutation, an integer $Q$ the number of updates, and 3 vectors, $p$ and $u, v$. The vector $p$ has $N$ elements and represents the original state of the permutation. The vectors $u, v$ have $Q$ elements and represent the indices to be swapped in each update. This function must return a vector of size $Q + 1$ (let's call this vector $ans$), $ans[i]$ should be equal to the minimum number of moves needed to sort the array after the $i$-th update, or $-1$ if it is impossible ($ans[0]$ is the answer for the original array, before any updates).
+        The function would look like this:
+
+\begin{minted}{c++}
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> El_Robot_Shor(int N, int Q, vector<int> p,
+    vector<int> u, vector<int> v) {
+    // Implement this function.
+}
+\end{minted}
+
+    The grader will call the function \textbf{multiple} times per case.
+    
+    \hh{Examples}
+
+        {\itshape Example 1:}
+        \begin{itemize}
+            \item The grader calls the function 
+            \begin{center}
+                \textit{El\_Robot\_Shor(4, 3, \{0, 1, 2, 3\}, \{0, 1, 2, 0\}, \{3, 3, 3, 3\})}
+            \end{center}
+            
+            the permutation is $\{0, 1, 2, 3\}$. After each update it looks like this:
+            \begin{center}
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    Index & Update & Current Permutation \\
+                    \hline
+                    \hline
+                     0 & $(0, 3)$ &  $\{3, 1, 2, 0\}$ \\
+                     \hline
+                     1 & $(1, 3)$ & $\{3, 0, 2, 1\}$ \\
+                     \hline
+                     2 & $(2, 3)$ & $\{3, 0, 1, 2\}$ \\
+                     \hline
+                     3 & $(0, 3)$ & $\{2, 0, 1, 3\}$ \\
+                     \hline
+                \end{tabular}
+            \end{center}
+            \item The vector the function should return is $\{0, -1, 1 , -1, 1\}$, because:
+            \begin{itemize}
+                \item  The original array is sorted.
+                \item  After the first update, it can be shown that it is impossible to make a sequence of moves that sorts the array.
+                \item After the second update, the array can be sorted with one move, choosing the pairs $(0, 1)$ and $(1, 3)$.
+                \item  After the third update, it can be shown that it is impossible to make a sequence of moves that sorts the array.
+                \item After the fourth update, the array can be sorted with a single move, choosing the pairs $(0, 1)$ and $(1, 2)$.
+            \end{itemize}
+            \item You would also get half the points for this case by answering with a vector like $\{0, -1, 0, -1, 0\}$.
+        \end{itemize}
+        
+        {\itshape Example 2:}
+        \begin{itemize}
+            \item The grader calls the function 
+            \begin{center}
+                \textit{El\_Robot\_Shor(10, 7, \{2, 3, 0, 6, 5, 1, 9, 8, 7, 4\}, \{0, 1, 9, 7, 8, 2, 0\}, \{3, 6, 3, 9, 3, 5, 3\})}
+            \end{center}
+            
+            \item The vector the function should return is $\{-1, 4, -1, 4, -1, 4, -1, 4\}$.
+        \end{itemize}
+        
+    \hh{Limits}
+        \begin{itemize}
+            \item $1 \le N, Q \le 2\times10^5$.
+            \item The vector $p$ will have exactly $N$ elements.
+            \item The vectors $u, v$ will have exactly $Q$ elements.
+            \item For each $0 \le i \le N - 1$, it holds that $0 \le p[i] < N$. 
+            \item For each $0 \le i \le Q - 1$, it holds that $0 \le u[i] \neq v[i] < N$.
+            \item It is guaranteed that the vector $p$ is a permutation of the numbers from $0$ to $N - 1$.
+            \item Let $S_N$ be the sum of the values of $N$ for each function call in a test case. It is guaranteed that $S_N \le 2 \times 10^5$.
+            \item Let $S_Q$ be the sum of the values of $Q$ for each function call in a test case. It is guaranteed that $S_Q \le 2 \times 10^5$.
+        \end{itemize}
+    
+    \hh{Subtasks}
+
+    \begin{itemize}
+        \item (10 points) $N, S_N, Q, S_Q \le 4$.
+        \item (20 points) For all $0 \le i \le N - 1$, it holds that $p[i] = i$.
+        \item (30 points) $N, S_N, Q, S_Q \le 2000$.
+        \item (40 points) No additional restrictions.
+    \end{itemize}
+    Additionally, for each subtask, if your program successfully determines whether it is possible to sort the permutation (returns $-1$ when it is not possible and a positive integer when it is), you will receive half the points in the corresponding subtask.
+\end{document}
