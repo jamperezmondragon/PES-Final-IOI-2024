@@ -17,10 +17,9 @@
     
     \hh{Problema}
     
-        Te es dado un entero $N$ y $N - 1$ aristas con pesos. Estas aristas conectan $N$ vértices de tal forma que exista un camino entre cualesquiera dos vértices (es decir, forman un árbol).
-        \footnote{Un camino simple en un grafo es definido como una secuencia de $k$ vértices $\{v_1, v_2, \cdots , v_k\}$, tal que para todo $1 \le i \le k - 1$, la arista $\{v_i, v_{i + 1}\}$ existe en el grafo. }
+        Te es dado un entero $N$ y $N - 1$ aristas con pesos. Estas aristas conectan $N$ vértices de tal forma que exista un camino\footnote{Un camino en un grafo es definido como una secuencia de $k$ vértices $\{v_1, v_2, \cdots , v_k\}$, tal que para todo $1 \le i \le k - 1$, la arista $\{v_i, v_{i + 1}\}$ existe en el grafo. } entre cualesquiera dos vértices (es decir, forman un árbol).
         
-        Para cada camino, definimos su peso como el {\bfseries xor} \footnote{or exclusivo, aquí consideramos la operación bit por bit} de cada uno de los pesos de las aristas que componen el camino. Determina la suma de los pesos de todos los caminos simples (no repiten aristas) del árbol \footnote{el camino $\{a, b\}$ se considera el mismo que $\{b, a\}$}.
+        Para cada camino, definimos su peso como el {\bfseries xor} \footnote{Or exclusivo, aquí consideramos la operación bit por bit.} de cada uno de los pesos de las aristas que componen el camino. Determina la suma de los pesos de todos los caminos simples (caminos que no repiten aristas) del árbol \footnote{El camino $\{a, b\}$ se considera el mismo que $\{b, a\}$.}.
         
     \hh{Detalles de Implementación}
 
