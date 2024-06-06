@@ -9,52 +9,74 @@
 \usemintedstyle{pastie}
 
 \begin{document}
-    \hh{Corrupción}
+    \hh{Cynthia Juego}
     
     {\itshape Este es un problema de Solo Salida}
     
     \vspace{10pt}
 
-    En la ciudad anti-OMI, hay demasiada corrupción. Una empresa de energía le paga al gobierno para que mantenga algunas de luces de la ciudad encendidas durante el día. Los políticos corruptos de anti-OMI siempre han dicho que es imposible apagarlas todas, pero tú sabes que no es así. Para desenmascarar su corrupción, quieres mandar un mensaje a los ciudadanos de anti-OMI. Entonces, te infiltraste en el centro de control del alambrado público de anti-OMI, con el objetivo de apagar todas las luces. Este centro de control fue construido convenientemente por la Maquiavélica Corporación de Energía, y los controles son completamente absurdos. Funcionan de la siguiente manera.
+    Hay una mesa redonda con $1 \le N \le 16$ barriles, equidistantes al rededor del borde de la mesa. Cada barril tiene una moneda dentro, que puede estar boca arriba o boca abajo. La posición original de las monedas las elige Cynthia. Cynthia reta a Juan a un juego. En un movimiento, Juan elige las posiciones de algunos de los barriles y se los dice a Cynthia. Luego, Juan cierra los ojos, y Cynthia gira la mesa de tal forma que las posiciones se rotan tanto como ella quiera. Después, Cynthia voltea las monedas dentro de los barriles en las posiciones que eligió Juan. Juan nunca sabe el estado de las monedas, ni cuanto rota la mesa Cynthia en sus movimientos. Juan Gana si en algún momento, todas las monedas están boca abajo. Cynthia gana, si Juan no gana después de $2^N$ movimientos. 
+    Debes elegir, para distintos valores de $N$, con qué jugador jugar, e idear una estrategia ganadora.
     
-    Hay un botón para cada Luz de la ciudad, organizados al rededor de un círculo, y una palanca que envía las instrucciones de cambio de estado a las luces. Cada botón, al ser presionado, cambia el estado de su respectiva luz. Sin embargo, para mandar algunas instrucciones al sistema de alambrado, debes jalar la palanca. 
-    
-    Como la Corporación Maquiavélica de Energía quiere evitar que apagues las luces, cada vez que jalas la palanca, las conexiones detrás del círculo con los botones giran aleatoriamente. Es decir, las instrucciones se rotarán por algún valor $t$. Para cualquier botón $a_i$ que presionaste, al jalar la palanca, la instrucción le llegará a la luz $a_i + t$ (módulo la cantidad de luces), y esta cambiará de estado.
-    
-    Después de jalar la palanca, todas las instrucciones se envían al alambrado y los botones regresan al estado original. En ningún momento sabes cuánto rotan las conexiones, ni el estado de las luces (tampoco al inicio del proceso). Tu objetivo es hacer la menor cantidad de movimientos, que garanticen que en algún momento, todas las luces de la ciudad estén apagadas. 
-
-    Antes de entrar a la sala de control, descubriste que la cantidad de luces en la ciudad es igual a $2^{N}$ para algún entero $N$.
-
     \hh{Problema}
 
-    Hay un arreglo binario escondido de tamaño $2^{N}$, para algún entero $0 \le N \le 4$. en un movimiento, Puedes hacerle xor con un arreglo binario. Sin embargo, antes de que esto suceda, al arreglo escondido se le aplicarán una cantidad arbitraria de shifts cíclicos. Encuentra la menor secuencia de movimientos que te permiten garantizar, que en algún momento el arreglo escondido tiene todos sus valores iguales a 0.
+    Para cada subtarea del problema, hay dos casos. El primer caso, tiene descrita la estrategia de Juan. 
 
+    La primera línea contiene el valor de $N$, la segunda línea contiene la cantidad de movimientos en su estrategia $S$, y las siguientes $S$ líneas contienen una secuencia de $1 \le K \le N$ enteros $0 \le x_i < N$ separados por espacios: las posiciones de los barriles que voltea en ese movimiento.
+
+    Para este tipo de casos, el archivo de salida debe contener una estrategia con la que Cynthia puede asegurar ganar ante la estrategia de Juan.
+
+    Se garantiza que esto siempre es posible.
+
+    Los otros casos, son archivos con un solo número, el valor de $N$. En estos casos, el archivo de salida debe contener una estrategia para Juan, con la que pueda asegurar ganar, independientemente de cómo juegue Cynthia.
+    
+    Se garantiza que esto no siempre será posible. 
+
+    
     \hh{Detalles de salida} 
 
-    En la primera línea de los archivos que subas, debes imprimir un número $M$, la cantidad de movimientos que haces. 
-    En las siguientes $M$ líneas, debes imprimir cadenas binarias en cada una, que representan los movimientos, un 1 en las posiciones que cambias de estado, y un 0 en las que no.
+        En los casos del primer tipo, la primera línea de tus archivos debe contener $1 \le K \le N$ enteros positivos separados por espacios: las posiciones de las monedas que inicialmente están boca arriba. La siguiente línea, debe contener un entero $M$, la cantidad de movimientos. Luego, las siguientes $M$ líneas deben contener un entero positivo $1 \le x \le N$, el factor de rotación en dicho movimiento. 
 
-    \newpage
+        En los casos del segundo tipo, tus archivos deben contener un entero $M$, la cantidad de movimientos. Luego, las siguientes $M$ líneas deben contener $1 \le K \le N$ enteros $0\le x_i < N$ separados por espacios: las posiciones de los barriles que volteas en ese movimiento.
+
+    \eject
     
     \hh{Evaluación}
+
+    Para cada caso, si tu archivo de salida no resuelve el problema de dicho caso, recibirás 0 puntos. 
     
-    Este problema consta de 5 casos, con distintos valores de $N$. Si la secuencia de movimientos dada no garantiza que en algún momento todas las luces estén apagadas, recibirás 0 puntos. De lo contrario, recibirás un puntaje entre 0 y el máximo puntaje de ese caso depentiendo de cuanto te acerques a la cantidad óptima de preguntas. 
+    La cantidad de puntos que da el caso del primer tipo de la subtarea $i$ es $a_i$, y la cantidad de puntos que da el caso del segundo tipo es $b_i$. Estos valores están escondidos, y algunos podrían ser 0. En la siguiente tabla, damos los valores de $N$ y $a_i + b_i$ para cada subtarea.
+    
     
 
     \begin{center}
         \begin{tabular}{|c|c|c|}
             \hline
-            Caso & Valor de $N$ & Máximo puntaje por Subtarea \\
+            Subtarea & Valor de $N$ & Puntaje total de la subtarea ($a_i + b_i$) \\
             \hline
-             caso 1 & $N = 0$ & 6 puntos.  \\
+            1 & $N = 2$ & 5 puntos.  \\
             \hline
-             caso 2 & $N = 1$ & 9 puntos.  \\
+            2 & $N = 3$ & 2 puntos. \\
             \hline
-            caso 3 & $N = 2$ & 25 puntos. \\
+            3 & $N = 4$ & 10 puntos. \\
             \hline
-            caso 4 & $N = 3$ & 30 puntos. \\
+            4 & $N = 5$ & 4 puntos. \\
             \hline
-            caso 4 & $N = 4$ & 30 puntos. \\
+            5 & $N = 6$ & 5 puntos. \\
+            \hline
+            6 & $N = 7$ & 4 puntos. \\
+            \hline
+            7 & $N = 8$ & 20 puntos. \\
+            \hline
+            8 & $N = 10$ & 5 puntos. \\
+            \hline
+            9 & $N = 12$ & 5 puntos. \\
+            \hline
+            10 & $N = 14$ & 5 puntos. \\
+            \hline
+            11 & $N = 15$ & 5 puntos. \\
+            \hline
+            12 & $N = 16$ & 30 puntos. \\
             \hline
         \end{tabular}
     \end{center}
