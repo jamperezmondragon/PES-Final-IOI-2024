@@ -1,0 +1,88 @@
+\documentclass[12pt]{scrartcl}
+\usepackage{config}
+\usepackage{minted}
+
+%\newcommand\mrh{\color{white}\bfseries}
+\newcommand\mrc[1]{\begin{tabular}{@{}l@{}} #1 \end{tabular}}
+\setlength\arrayrulewidth{0.8pt}
+
+\usemintedstyle{pastie}
+
+\begin{document}
+    \hh{Cynthia's Game}
+    
+    {\itshape This is an Output Only problem}
+    
+    \vspace{10pt}
+
+    There is a round table with $1 \le N \le 16$ barrels, equidistant around the edge of the table. Each barrel has a coin inside, which can be heads or tails. The original state of the coins is chosen by Cynthia. Cynthia challenges Juan to a game. In one move, Juan chooses the positions of some of the barrels and tells Cynthia. Then, Juan closes his eyes, and Cynthia rotates the table as much as she wants so that the positions are rotated. Afterwards, Cynthia flips the coins inside the barrels in the positions chosen by Juan. Juan never knows the state of the coins, nor how much Cynthia rotates the table in her moves. Juan wins if at any moment, all the coins are tails. Cynthia wins if Juan does not win after $2^N$ moves. 
+    You must choose, for different values of $N$, with which player to play, and devise a winning strategy.
+    
+    \hh{Problem}
+
+    For each subtask of the problem, there are two test cases. The first case describes Juan's strategy. 
+
+    The first line of this type of test cases contains the value of $N$, the second line contains the number of moves in his strategy, $S$, and the following $S$ lines contain a sequence of $1 \le K \le N$ integers $0 \le x_i < N$ separated by spaces: the positions of the barrels he flips in that move.
+
+    For this type of case, the output file must contain a strategy with which Cynthia can ensure to win against Juan's strategy.
+
+    It is guaranteed that this is always possible.
+
+    The other type of test cases are files with a single number, the value of $N$. In these test cases, the output file must contain a strategy for Juan, with which he can ensure to win, regardless of how Cynthia plays.
+    
+    It is guaranteed that this will not always be possible. 
+
+    
+    \hh{Output Details} 
+
+        In the first type of test cases, the first line of your files must contain $1 \le K \le N$ positive integers separated by spaces: the positions of the coins that are initially heads. The next line must contain an integer $M$, the number of moves. Then, the next $M$ lines must contain a positive integer $1 \le x \le N$, the rotation factor in that move. 
+
+        In the second type of test cases, your files must contain an integer $M$, the number of moves. Then, the next $M$ lines must contain $1 \le K \le N$ integers $0 \le x_i < N$ separated by spaces: the positions of the barrels you flip in that move.
+
+    \eject
+    
+    \hh{Evaluation}
+
+    For each case, if your output file does not solve the problem for that case, you will receive 0 points. 
+    
+    The number of points that the first type of case of subtask $i$ gives is $a_i$, and the number of points that the second type of case gives is $b_i$. These values are hidden, and some might be 0. In the following table, we give the values of $N$ and $a_i + b_i$ for each subtask.
+    
+    
+
+    \begin{center}
+        \begin{tabular}{|c|c|c|}
+            \hline
+            Subtask & Value of $N$ & Total score of the subtask ($a_i + b_i$) \\
+            \hline
+            1 & $N = 2$ & 5 points.  \\
+            \hline
+            2 & $N = 3$ & 2 points. \\
+            \hline
+            3 & $N = 4$ & 10 points. \\
+            \hline
+            4 & $N = 5$ & 4 points. \\
+            \hline
+            5 & $N = 6$ & 5 points. \\
+            \hline
+            6 & $N = 7$ & 4 points. \\
+            \hline
+            7 & $N = 8$ & 20 points. \\
+            \hline
+            8 & $N = 10$ & 5 points. \\
+            \hline
+            9 & $N = 12$ & 5 points. \\
+            \hline
+            10 & $N = 14$ & 5 points. \\
+            \hline
+            11 & $N = 15$ & 5 points. \\
+            \hline
+            12 & $N = 16$ & 30 points. \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+        
+
+    
+    
+\end{document}
