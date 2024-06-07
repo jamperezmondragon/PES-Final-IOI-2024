@@ -21,14 +21,14 @@
     
     \hh{Detalles de Implementación}
 
-        Debes implementar la función \textit{Arbol-stian()}. Esta función recibe un entero $N$, 2 vectores $u, v$ con $N - 1$ elementos, y un vector $w$, con $N$ elementos. Para cada $0 \le i \le N - 2$, $u[i]$ y $v[i]$ son los vértices que se conectan con la arista $i$. para cada $0 \le i \le N - 1$, $w[i]$ es el peso del vértice $i$. Esta función debe regresar un entero, el peso máximo en camino del árbol.
+        Debes implementar la función \textit{Arbolstian()}. Esta función recibe un entero $N$, 2 vectores $u, v$ con $N - 1$ elementos, y un vector $w$, con $N$ elementos. Para cada $0 \le i \le N - 2$, $u[i]$ y $v[i]$ son los vértices que se conectan con la arista $i$. para cada $0 \le i \le N - 1$, $w[i]$ es el peso del vértice $i$. Esta función debe regresar un entero, el peso máximo en camino del árbol.
         La función se vería así:
 
 \begin{minted}{c++}
 #include <bits/stdc++.h>
 using namespace std;
 
-long long int Arbol-stian(int N, vector<int> u, vector<int> v, vector<int> w) {
+long long int Arbolstian(int N, vector<int> u, vector<int> v, vector<int> w) {
     // Implementa esta función.
 }
     
@@ -42,7 +42,7 @@ long long int Arbol-stian(int N, vector<int> u, vector<int> v, vector<int> w) {
         \begin{itemize}
             \item El evaluador llama la función 
             \begin{center}
-                \textit{Arbol-stian(6, \{0, 0, 0, 2, 3\}, \{1, 2, 3, 4, 5\}, \{8, 2, 2, 4, 4, 8\})}
+                \textit{Arbolstian(6, \{0, 0, 0, 2, 3\}, \{1, 2, 3, 4, 5\}, \{8, 2, 2, 4, 4, 8\})}
             \end{center}
             el árbol en este ejemplo es el siguiente:
             
@@ -77,7 +77,7 @@ long long int Arbol-stian(int N, vector<int> u, vector<int> v, vector<int> w) {
         \begin{itemize}
             \item El evaluador llama la función 
             \begin{center}
-                \textit{Arbol-stian(9, \{0, 1, 2, 3, 4, 5, 6, 7\}, \{1, 2, 3, 4, 5, 6, 7, 8\}, \{3, 3, 15, 10, 14, 7, 21, 6, 2\})}
+                \textit{Arbolstian(9, \{0, 1, 2, 3, 4, 5, 6, 7\}, \{1, 2, 3, 4, 5, 6, 7, 8\}, \{3, 3, 15, 10, 14, 7, 21, 6, 2\})}
             \end{center}
             el árbol en este ejemplo es el siguiente:
             \begin{center}
