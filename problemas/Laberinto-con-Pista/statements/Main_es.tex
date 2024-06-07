@@ -59,12 +59,12 @@
         #include <bits/stdc++.h>
         using namespace std;
         
-        vector<bool> Pista(int N, vector<vector<bool>> Laberinto) {
-            vector<bool> Pista;
+        vector<int> Pista(int N, vector<vector<int>> Laberinto) {
+            vector<int> Pista;
             // Programa esta función.
             return pista;
         }
-        void Juego(vector<bool> Pista) {
+        void Juego(vector<int> Pista) {
             // Programa esta función.
         }
         
@@ -132,16 +132,18 @@
     \hh{Subtareas}
 
     Digamos que la cantidad de Llamadas a la función $mover()$ es $M$, y el tamaño de la pista $P$.
+    También, llamémosle $P_j$ al tamaño de la pista de la solución modelo que tiene el jurado para un laberinto específico. 
 
     \begin{itemize}
         \item (5 puntos) No hay ningún límite sobre $M$ o $P$.
-        \item (15 puntos) Los valores de $M$ y $P$ deben ser mínimos para el laberinto dado. Se garantiza que no existe una celda vacía con cuatro celdas vecinas vacías.
+        \item (15 puntos) El valor de $M$ debe ser mínimo para el laberinto dado, y $P$ debe ser a lo más $P_j$. Se garantiza que no existe una celda vacía con cuatro celdas vecinas vacías.
         \item (20 puntos) El valor de $M$ debe ser mínimo para el laberinto dado. No hay restricciones respecto a $P$.
         \item (60 puntos) 
         \begin{itemize}
-            \item Para obtener los 60 puntos, los valores de $M$ y $P$ deben ser mínimos para el laberinto dado.
-            \item Cualquier solución que tenga un $P$ mayor, será normalizada entre el valor óptimo y 2 veces el valor óptimo de $M$.
+            \item Para obtener los 60 puntos, el valor de $M$ debe ser mínimo para el laberinto dado y $P$ debe ser a lo más  $P_j$.
+            \item Cualquier solución que tenga un $P$ mayor, será normalizada entre $P_j$ y 2 veces el valor óptimo de $M$, es decir, los puntos que obtendrás por cada caso serán igual a
+            \[1 - \frac{P_j - P}{P_j - 2M}.\]
         \end{itemize}
     \end{itemize}
-    En cualquier caso, si tu programa tiene $P$ mayor que 2 veces el valor óptimo de $M$, recibirá 0 puntos por ese caso.
+    En cualquier caso, si tu programa tiene $P$ mayor que 2 veces el valor óptimo de $M$, o si tu segundo programa no logra llegar a la esquina superior derecha del laberinto, recibirá 0 puntos por ese caso.
 \end{document}
