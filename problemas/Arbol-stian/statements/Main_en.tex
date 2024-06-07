@@ -21,14 +21,14 @@
     
     \hh{Implementation Details}
 
-        You must implement the function \textit{Arbol-stian()}. This function receives an integer $N$, 2 vectors $u, v$ with $N - 1$ elements, and a vector $w$, with $N$ elements. For each $0 \le i \le N - 2$, $u[i]$ and $v[i]$ are the vertices that are connected by the edge $i$. For each $0 \le i \le N - 1$, $w[i]$ is the weight of the vertex $i$. This function must return an integer, the maximum weight of a path in the tree.
+        You must implement the function \textit{Arbolstian()}. This function receives an integer $N$, 2 vectors $u, v$ with $N - 1$ elements, and a vector $w$, with $N$ elements. For each $0 \le i \le N - 2$, $u[i]$ and $v[i]$ are the vertices that are connected by the edge $i$. For each $0 \le i \le N - 1$, $w[i]$ is the weight of the vertex $i$. This function must return an integer, the maximum weight of a path in the tree.
         Your program should look like this:
 
 \begin{minted}{c++}
 #include <bits/stdc++.h>
 using namespace std;
 
-long long int Arbol-stian(int N, vector<int> u, vector<int> v, vector<int> w) {
+long long int Arbolstian(int N, vector<int> u, vector<int> v, vector<int> w) {
     // Implement this function.
 }
     
@@ -42,7 +42,7 @@ long long int Arbol-stian(int N, vector<int> u, vector<int> v, vector<int> w) {
         \begin{itemize}
             \item The grader calls the function 
             \begin{center}
-                \textit{Arbol-stian(6, \{0, 0, 0, 2, 3\}, \{1, 2, 3, 4, 5\}, \{8, 2, 2, 4, 4, 8\})}
+                \textit{Arbolstian(6, \{0, 0, 0, 2, 3\}, \{1, 2, 3, 4, 5\}, \{8, 2, 2, 4, 4, 8\})}
             \end{center}
             the tree in this example is illustrated in the following image:
             
@@ -77,7 +77,7 @@ long long int Arbol-stian(int N, vector<int> u, vector<int> v, vector<int> w) {
         \begin{itemize}
             \item The grader calls the function 
             \begin{center}
-                \textit{Arbol-stian(9, \{0, 1, 2, 3, 4, 5, 6, 7\}, \{1, 2, 3, 4, 5, 6, 7, 8\}, \{3, 3, 15, 10, 14, 7, 21, 6, 2\})}
+                \textit{Arbolstian(9, \{0, 1, 2, 3, 4, 5, 6, 7\}, \{1, 2, 3, 4, 5, 6, 7, 8\}, \{3, 3, 15, 10, 14, 7, 21, 6, 2\})}
             \end{center}
             the tree in this example is illustrated by the following image:
             \begin{center}
