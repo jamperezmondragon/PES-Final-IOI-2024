@@ -25,7 +25,7 @@
 
     \hh{Detalles de Implementación} 
 
-    Implementa dos funciones. La primera función, $Pista()$, recibe una variable $N$, el tamaño del laberinto, y un vector de vectores, $Laberinto$, con la información de las celdas bloqueadas y vacías. Esta función debe regresar la pista, como un vector de booleanos. La segunda función, $Juego()$, recibe un vector de vectores la pista que generó el primer programa, y tiene acceso a la función $mover()$ para interactuar con el laberinto. Cuando llamas dicha función, debes indicar un parámetro, que detalla el tipo de movimiento. Los parámetros y procesos disponibles son los siguientes:
+    Implementa dos funciones. La primera función, $Pista()$, recibe una variable $N$, el tamaño del laberinto, y un vector de vectores, $Laberinto$, con la información de las celdas bloqueadas y vacías. Esta función debe regresar la pista, como un vector de enteros (estos enteros deben ser 1 o 0). La segunda función, $Juego()$, recibe un vector de enteros, la pista que generó el primer programa, y tiene acceso a la función $mover()$ para interactuar con el laberinto. Cuando llamas dicha función, debes indicar un parámetro, que detalla el tipo de movimiento. Los parámetros y procesos disponibles son los siguientes:
 
     \begin{center}
         \begin{tabular}{|c|c|}
@@ -50,9 +50,11 @@
     Cada vez que llames la función mover, el proceso puede ser exitoso o fallar.  Si te moviste a una casilla vacía, o finalizaste el juego en la casilla adecuada el proceso es exitoso. En cualquier otro caso, el proceso falla y el jurado mata el programa, y recibes 0 puntos en el caso que se esté procesando.
     
     
-    independientemente del parámetro, la función regresará  un arreglo de 4 booleanos. LLamémosle $a$. $a[i]$ es verdadero si $mover(i)$ sería un movimiento válido. 
+    independientemente del parámetro, la función regresará  un arreglo de 4 booleanos. Llamémosle $a$. $a[i]$ es verdadero si $mover(i)$ sería un movimiento válido. 
+
+    Además, para llevar a cabo la interacción, debes incluir la librería \textit{``Laberinto.h"} con el comando \textit{\#include ``Laberinto.h"}.
     
-    Lo siguiente es un template del programa que debes implementar:
+    Lo siguiente es un ejemplo de cómo se vería el programa que debes implementar:
     
     \begin{minted}{cpp}
         #include "Laberinto.h"
@@ -127,6 +129,7 @@
             \item $N \le 200$.
             \item Los 4 bordes del tablero consisten de celdas bloqueadas.
             \item Se garantiza que las celdas de las esquinas inferior izquierda y superior derecha están vacías, y que existe al menos un camino de celdas vacías entre ellas.
+            \item Si la función \textit{Pista()} regresa un vector que no consista únicamente de $0$s y $1$s, recibirás 0 puntos.
         \end{itemize}
         
     \hh{Subtareas}
