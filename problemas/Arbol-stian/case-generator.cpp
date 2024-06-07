@@ -65,6 +65,7 @@ enum treeStrategy : unsigned{
     treeBamboo,
     treeRandom,
     treePaste,
+    treeLine
 };
 
 struct TreeMetadata{
@@ -143,6 +144,13 @@ auto treeGenerator(TreeMetadata td) -> Tree{
             T.E.push_back({u, v});
             break;
         }
+        case treeLine:{
+            for(int i = 1; i < N; i++){
+                T.E.push_back({i - 1, i});
+            }
+            shuffle(T.E.begin(), T.E.end(), rnd.randomEngine);
+            return T;
+        }
         }
     }
     vector<int> A(N);
@@ -184,7 +192,7 @@ const int MAXValue = 1e6;
 vector<int> primes, primesInOrder;
 vector<int> primesOfNumber[MAXValue + 1];
 set<int> primeNumbers;
-bitset<MAXValue + 1> primeCriba;
+bool primeCriba[MAXValue + 1];
 
 struct Case {
     Tree T;
@@ -196,8 +204,9 @@ struct Case {
             meta.tst.strategy = tst[rnd.Int(0, tst.size() - 1)];
         }
         if(meta.wst == wNull){
-            vector<weightStrategy> wst = {wGeneral, wGeneral, wGeneral, wHighComp, wHighComp};
-            meta.wst = wst[rnd.Int(0, wst.size() - 1)];
+            //vector<weightStrategy> wst = {wGeneral, wGeneral, wGeneral, wHighComp, wHighComp};
+            //meta.wst = wst[rnd.Int(0, wst.size() - 1)];
+            meta.wst = wGeneral;
         }
         T = treeGenerator(meta.tst);
         int N = meta.tst.N;
@@ -209,7 +218,7 @@ struct Case {
         switch(meta.wst){
         case wEqual:{
             int v = highlyComposedNumbers[rnd.Int(0, highCompCnt - 1)];
-            if(rnd.Int(0, 1)){
+            if(rnd.Int(0, 3)){
                 v = rnd.Int(1, MAXValue);
             }
             for(int i=0; i<N; i++){
@@ -223,48 +232,37 @@ struct Case {
                 adj[u].push_back(v);
                 adj[v].push_back(u);
             }
-            function<void(int, int, set<int>&, set<int> &)> dfs = [&](int v, int p, set<int> &pPrimes, set<int> &validPrimes){
-                set<int> vPrimes, nValidPrimes = primeNumbers;
+            function<void(int, int, set<int>&)> dfs = [&](int v, int p, set<int> &pPrimes){
+                set<int> vPrimes;
                 if(p == -1){
-                    W[v] = highlyComposedNumbers[rnd.Int(0, highCompCnt - 1)];
+                    W[v] = rnd.Int(1, MAXValue);
                     int x = W[v];
                     for(auto y : primesOfNumber[x]){
                         vPrimes.insert(y);
-                        nValidPrimes.erase(y);
                     }
                 }
                 else{
                     int primeWeight = *next(pPrimes.begin(), rnd.Int(0, pPrimes.size() - 1));
                     W[v] = primeWeight;
                     vPrimes.insert(primeWeight);
-                    nValidPrimes.erase(primeWeight);
-                    while(!validPrimes.empty()){
+                    for(int it = 0; it < 20; it++){
                         int limitValue = MAXValue / W[v];
-                        if(*validPrimes.begin() > limitValue) break;
-                        int l = 1, r = validPrimes.size();
-                        while(l < r){
-                            int mit = (l + r) >> 1;
-                            int num = *next(validPrimes.begin(), mit);
-                            if(num > limitValue){
-                                r = mit;
-                            }
-                            else{
-                                l = mit + 1;
-                            }
+                        if(limitValue < primesInOrder[0]) break;
+                        int idx = upper_bound(primesInOrder.begin(), primesInOrder.end(), limitValue) - primesInOrder.begin() - 1;
+                        int npr = primesInOrder[rnd.Int(0, min(idx, 50))];
+                        if(!pPrimes.count(npr)){
+                            W[v] *= npr;
+                            vPrimes.insert(npr);
                         }
-                        int npr = *next(validPrimes.begin(), rnd.Int(0, sqrt(l) - 1));
-                        W[v] *= npr;
-                        vPrimes.insert(npr);
-                        nValidPrimes.erase(npr);
                     }
                 }
                 for(auto u : adj[v]){
                     if(u == p) continue;
-                    dfs(u, v, vPrimes, nValidPrimes);
+                    dfs(u, v, vPrimes);
                 }
             };
-            set<int> dm1, dm2;
-            dfs(rnd.Int(0, N-1), -1, dm1, dm2);
+            set<int> dm1;
+            dfs(rnd.Int(0, N-1), -1, dm1);
             break;
         }
         case wTwoPower:{
@@ -355,6 +353,7 @@ struct Solution{
 			g[u].push_back(make_pair(v, w));
 			g[v].push_back(make_pair(u, w));
 		}
+        ans = *max_element(C.W.begin(), C.W.end());
         dfs(0, -1, g, dp);
     }
     void print(string filename, bool newFile) {
@@ -408,8 +407,10 @@ struct Testcase{
 int main(){
     for(long long i=2; i*i <= MAXValue; i++){
         if(!primeCriba[i]){
-            for(long long j=i; j<=MAXValue; j+=i){
+            for(long long j=i*i; j<=MAXValue; j+=i){
                 primeCriba[j] = 1;
+            }
+            for(long long j=i; j<=MAXValue; j+=i){
                 primesOfNumber[j].push_back(i);
             }
         }
@@ -417,10 +418,10 @@ int main(){
     for(int i=2; i<=MAXValue; i++){
         if(!primeCriba[i]){
             primes.push_back(i);
+            primesInOrder.push_back(i);
             primeNumbers.insert(i);
         }
     }
-    primesInOrder = primes;
     //cout<< primes.size();
 
     for(int i=1; i<=MAXValue; i++){
@@ -588,10 +589,11 @@ int main(){
     }).print("cases/sub2.6.in");
     //*/
 
-    //Subtask 2
-    Testcase({"sub3", 200000, tNull, edgePrime}).print("cases/sub3.1.in");
+    //Subtask 3
+    ///*
+    //Testcase({"sub3", 200000, tNull, edgePrime}).print("cases/sub3.1.in");
+    //Testcase({"sub3", 200000, tNull, edgePrime}).print("cases/sub3.2.in");
     /*
-    Testcase({"sub3", 200000, tNull, edgePrime}).print("cases/sub3.2.in");
     Testcase({
         {"sub3.3.1", {6, tNull}, edgePrime},
         {"sub3.3.2", {12, tNull}, edgePrime},
@@ -609,6 +611,7 @@ int main(){
         {"sub3.3.14", {50000, tNull}, edgePrime},
         {"sub3.3.15", {100000, tNull}, edgePrime},
     }).print("cases/sub3.3.in");
+    /*
     Testcase({
         {"sub3.4.1", {6, tNull}, edgePrime},
         {"sub3.4.2", {12, tNull}, edgePrime},
@@ -660,7 +663,195 @@ int main(){
         {"sub3.6.14", {50000, treeFile, "ext-trees/trees/sub3.6.14-tree.in"}, edgePrime},
         {"sub3.6.15", {100000, treeFile, "ext-trees/trees/sub3.6.15-tree.in"}, edgePrime},
     }).print("cases/sub3.6.in");
-    */
+    //*/
+
+    //Subtask 4
+    /*
+    Testcase({"sub4", 200000, tNull, wTwoPower}).print("cases/sub4.1.in");
+    Testcase({"sub4", 200000, tNull, wTwoPower}).print("cases/sub4.2.in");
+    Testcase({
+        {"sub4.3.1", {6, tNull}, wTwoPower},
+        {"sub4.3.2", {12, tNull}, wTwoPower},
+        {"sub4.3.3", {24, tNull}, wTwoPower},
+        {"sub4.3.4", {48, tNull}, wTwoPower},
+        {"sub4.3.5", {97, tNull}, wTwoPower},
+        {"sub4.3.6", {195, tNull}, wTwoPower},
+        {"sub4.3.7", {390, tNull}, wTwoPower},
+        {"sub4.3.8", {781, tNull}, wTwoPower},
+        {"sub4.3.9", {1562, tNull}, wTwoPower},
+        {"sub4.3.10", {3125, tNull}, wTwoPower},
+        {"sub4.3.11", {6250, tNull}, wTwoPower},
+        {"sub4.3.12", {12500, tNull}, wTwoPower},
+        {"sub4.3.13", {25000, tNull}, wTwoPower},
+        {"sub4.3.14", {50000, tNull}, wTwoPower},
+        {"sub4.3.15", {100000, tNull}, wTwoPower},
+    }).print("cases/sub4.3.in");
+    Testcase({
+        {"sub4.4.1", {6, tNull}, wTwoPower},
+        {"sub4.4.2", {12, tNull}, wTwoPower},
+        {"sub4.4.3", {24, tNull}, wTwoPower},
+        {"sub4.4.4", {48, tNull}, wTwoPower},
+        {"sub4.4.5", {97, tNull}, wTwoPower},
+        {"sub4.4.6", {195, tNull}, wTwoPower},
+        {"sub4.4.7", {390, tNull}, wTwoPower},
+        {"sub4.4.8", {781, tNull}, wTwoPower},
+        {"sub4.4.9", {1562, tNull}, wTwoPower},
+        {"sub4.4.10", {3125, tNull}, wTwoPower},
+        {"sub4.4.11", {6250, tNull}, wTwoPower},
+        {"sub4.4.12", {12500, tNull}, wTwoPower},
+        {"sub4.4.13", {25000, tNull}, wTwoPower},
+        {"sub4.4.14", {50000, tNull}, wTwoPower},
+        {"sub4.4.15", {100000, tNull}, wTwoPower},
+    }).print("cases/sub4.4.in");
+    Testcase({
+        {"sub4.5.1", {6, treeFile, "ext-trees/trees/sub4.5.1-tree.in"}, wTwoPower},
+        {"sub4.5.2", {12, treeFile, "ext-trees/trees/sub4.5.2-tree.in"}, wTwoPower},
+        {"sub4.5.3", {24, treeFile, "ext-trees/trees/sub4.5.3-tree.in"}, wTwoPower},
+        {"sub4.5.4", {48, treeFile, "ext-trees/trees/sub4.5.4-tree.in"}, wTwoPower},
+        {"sub4.5.5", {97, treeFile, "ext-trees/trees/sub4.5.5-tree.in"}, wTwoPower},
+        {"sub4.5.6", {195, treeFile, "ext-trees/trees/sub4.5.6-tree.in"}, wTwoPower},
+        {"sub4.5.7", {390, treeFile, "ext-trees/trees/sub4.5.7-tree.in"}, wTwoPower},
+        {"sub4.5.8", {781, treeFile, "ext-trees/trees/sub4.5.8-tree.in"}, wTwoPower},
+        {"sub4.5.9", {1562, treeFile, "ext-trees/trees/sub4.5.9-tree.in"}, wTwoPower},
+        {"sub4.5.10", {3125, treeFile, "ext-trees/trees/sub4.5.10-tree.in"}, wTwoPower},
+        {"sub4.5.11", {6250, treeFile, "ext-trees/trees/sub4.5.11-tree.in"}, wTwoPower},
+        {"sub4.5.12", {12500, treeFile, "ext-trees/trees/sub4.5.12-tree.in"}, wTwoPower},
+        {"sub4.5.13", {25000, treeFile, "ext-trees/trees/sub4.5.13-tree.in"}, wTwoPower},
+        {"sub4.5.14", {50000, treeFile, "ext-trees/trees/sub4.5.14-tree.in"}, wTwoPower},
+        {"sub4.5.15", {100000, treeFile, "ext-trees/trees/sub4.5.15-tree.in"}, wTwoPower},
+    }).print("cases/sub4.5.in");
+    Testcase({
+        {"sub4.6.1", {6, treeFile, "ext-trees/trees/sub4.6.1-tree.in"}, wTwoPower},
+        {"sub4.6.2", {12, treeFile, "ext-trees/trees/sub4.6.2-tree.in"}, wTwoPower},
+        {"sub4.6.3", {24, treeFile, "ext-trees/trees/sub4.6.3-tree.in"}, wTwoPower},
+        {"sub4.6.4", {48, treeFile, "ext-trees/trees/sub4.6.4-tree.in"}, wTwoPower},
+        {"sub4.6.5", {97, treeFile, "ext-trees/trees/sub4.6.5-tree.in"}, wTwoPower},
+        {"sub4.6.6", {195, treeFile, "ext-trees/trees/sub4.6.6-tree.in"}, wTwoPower},
+        {"sub4.6.7", {390, treeFile, "ext-trees/trees/sub4.6.7-tree.in"}, wTwoPower},
+        {"sub4.6.8", {781, treeFile, "ext-trees/trees/sub4.6.8-tree.in"}, wTwoPower},
+        {"sub4.6.9", {1562, treeFile, "ext-trees/trees/sub4.6.9-tree.in"}, wTwoPower},
+        {"sub4.6.10", {3125, treeFile, "ext-trees/trees/sub4.6.10-tree.in"}, wTwoPower},
+        {"sub4.6.11", {6250, treeFile, "ext-trees/trees/sub4.6.11-tree.in"}, wTwoPower},
+        {"sub4.6.12", {12500, treeFile, "ext-trees/trees/sub4.6.12-tree.in"}, wTwoPower},
+        {"sub4.6.13", {25000, treeFile, "ext-trees/trees/sub4.6.13-tree.in"}, wTwoPower},
+        {"sub4.6.14", {50000, treeFile, "ext-trees/trees/sub4.6.14-tree.in"}, wTwoPower},
+        {"sub4.6.15", {100000, treeFile, "ext-trees/trees/sub4.6.15-tree.in"}, wTwoPower},
+    }).print("cases/sub4.6.in");
+    //*/
+
+    //Subtask 5
+    /*
+    Testcase({"sub5", 200000, treeLine, wNull}).print("cases/sub5.1.in");
+    Testcase({"sub5", 200000, treeLine, wNull}).print("cases/sub5.2.in");
+    Testcase({
+        {"sub5.3.1", {6, treeLine}, wNull},
+        {"sub5.3.2", {12, treeLine}, wNull},
+        {"sub5.3.3", {24, treeLine}, wNull},
+        {"sub5.3.4", {48, treeLine}, wNull},
+        {"sub5.3.5", {97, treeLine}, wNull},
+        {"sub5.3.6", {195, treeLine}, wNull},
+        {"sub5.3.7", {390, treeLine}, wNull},
+        {"sub5.3.8", {781, treeLine}, wNull},
+        {"sub5.3.9", {1562, treeLine}, wNull},
+        {"sub5.3.10", {3125, treeLine}, wNull},
+        {"sub5.3.11", {6250, treeLine}, wNull},
+        {"sub5.3.12", {12500, treeLine}, wNull},
+        {"sub5.3.13", {25000, treeLine}, wNull},
+        {"sub5.3.14", {50000, treeLine}, wNull},
+        {"sub5.3.15", {100000, treeLine}, wNull},
+    }).print("cases/sub5.3.in");
+    Testcase({
+        {"sub5.4.1", {6, treeLine}, wNull},
+        {"sub5.4.2", {12, treeLine}, wNull},
+        {"sub5.4.3", {24, treeLine}, wNull},
+        {"sub5.4.4", {48, treeLine}, wNull},
+        {"sub5.4.5", {97, treeLine}, wNull},
+        {"sub5.4.6", {195, treeLine}, wNull},
+        {"sub5.4.7", {390, treeLine}, wNull},
+        {"sub5.4.8", {781, treeLine}, wNull},
+        {"sub5.4.9", {1562, treeLine}, wNull},
+        {"sub5.4.10", {3125, treeLine}, wNull},
+        {"sub5.4.11", {6250, treeLine}, wNull},
+        {"sub5.4.12", {12500, treeLine}, wNull},
+        {"sub5.4.13", {25000, treeLine}, wNull},
+        {"sub5.4.14", {50000, treeLine}, wNull},
+        {"sub5.4.15", {100000, treeLine}, wNull},
+    }).print("cases/sub5.4.in");
+    //*/
+
+    //Subtask 6
+    /*
+    Testcase({"sub6", 200000, tNull, wNull}).print("cases/sub6.1.in");
+    Testcase({"sub6", 200000, tNull, wNull}).print("cases/sub6.2.in");
+    Testcase({
+        {"sub6.3.1", {6, tNull}, wNull},
+        {"sub6.3.2", {12, tNull}, wNull},
+        {"sub6.3.3", {24, tNull}, wNull},
+        {"sub6.3.4", {48, tNull}, wNull},
+        {"sub6.3.5", {97, tNull}, wNull},
+        {"sub6.3.6", {195, tNull}, wNull},
+        {"sub6.3.7", {390, tNull}, wNull},
+        {"sub6.3.8", {781, tNull}, wNull},
+        {"sub6.3.9", {1562, tNull}, wNull},
+        {"sub6.3.10", {3125, tNull}, wNull},
+        {"sub6.3.11", {6250, tNull}, wNull},
+        {"sub6.3.12", {12500, tNull}, wNull},
+        {"sub6.3.13", {25000, tNull}, wNull},
+        {"sub6.3.14", {50000, tNull}, wNull},
+        {"sub6.3.15", {100000, tNull}, wNull},
+    }).print("cases/sub6.3.in");
+    Testcase({
+        {"sub6.4.1", {6, tNull}, wNull},
+        {"sub6.4.2", {12, tNull}, wNull},
+        {"sub6.4.3", {24, tNull}, wNull},
+        {"sub6.4.4", {48, tNull}, wNull},
+        {"sub6.4.5", {97, tNull}, wNull},
+        {"sub6.4.6", {195, tNull}, wNull},
+        {"sub6.4.7", {390, tNull}, wNull},
+        {"sub6.4.8", {781, tNull}, wNull},
+        {"sub6.4.9", {1562, tNull}, wNull},
+        {"sub6.4.10", {3125, tNull}, wNull},
+        {"sub6.4.11", {6250, tNull}, wNull},
+        {"sub6.4.12", {12500, tNull}, wNull},
+        {"sub6.4.13", {25000, tNull}, wNull},
+        {"sub6.4.14", {50000, tNull}, wNull},
+        {"sub6.4.15", {100000, tNull}, wNull},
+    }).print("cases/sub6.4.in");
+    Testcase({
+        {"sub6.5.1", {6, treeFile, "ext-trees/trees/sub6.5.1-tree.in"}, wNull},
+        {"sub6.5.2", {12, treeFile, "ext-trees/trees/sub6.5.2-tree.in"}, wNull},
+        {"sub6.5.3", {24, treeFile, "ext-trees/trees/sub6.5.3-tree.in"}, wNull},
+        {"sub6.5.4", {48, treeFile, "ext-trees/trees/sub6.5.4-tree.in"}, wNull},
+        {"sub6.5.5", {97, treeFile, "ext-trees/trees/sub6.5.5-tree.in"}, wNull},
+        {"sub6.5.6", {195, treeFile, "ext-trees/trees/sub6.5.6-tree.in"}, wNull},
+        {"sub6.5.7", {390, treeFile, "ext-trees/trees/sub6.5.7-tree.in"}, wNull},
+        {"sub6.5.8", {781, treeFile, "ext-trees/trees/sub6.5.8-tree.in"}, wNull},
+        {"sub6.5.9", {1562, treeFile, "ext-trees/trees/sub6.5.9-tree.in"}, wNull},
+        {"sub6.5.10", {3125, treeFile, "ext-trees/trees/sub6.5.10-tree.in"}, wNull},
+        {"sub6.5.11", {6250, treeFile, "ext-trees/trees/sub6.5.11-tree.in"}, wNull},
+        {"sub6.5.12", {12500, treeFile, "ext-trees/trees/sub6.5.12-tree.in"}, wNull},
+        {"sub6.5.13", {25000, treeFile, "ext-trees/trees/sub6.5.13-tree.in"}, wNull},
+        {"sub6.5.14", {50000, treeFile, "ext-trees/trees/sub6.5.14-tree.in"}, wNull},
+        {"sub6.5.15", {100000, treeFile, "ext-trees/trees/sub6.5.15-tree.in"}, wNull},
+    }).print("cases/sub6.5.in");
+    Testcase({
+        {"sub6.6.1", {6, treeFile, "ext-trees/trees/sub6.6.1-tree.in"}, wNull},
+        {"sub6.6.2", {12, treeFile, "ext-trees/trees/sub6.6.2-tree.in"}, wNull},
+        {"sub6.6.3", {24, treeFile, "ext-trees/trees/sub6.6.3-tree.in"}, wNull},
+        {"sub6.6.4", {48, treeFile, "ext-trees/trees/sub6.6.4-tree.in"}, wNull},
+        {"sub6.6.5", {97, treeFile, "ext-trees/trees/sub6.6.5-tree.in"}, wNull},
+        {"sub6.6.6", {195, treeFile, "ext-trees/trees/sub6.6.6-tree.in"}, wNull},
+        {"sub6.6.7", {390, treeFile, "ext-trees/trees/sub6.6.7-tree.in"}, wNull},
+        {"sub6.6.8", {781, treeFile, "ext-trees/trees/sub6.6.8-tree.in"}, wNull},
+        {"sub6.6.9", {1562, treeFile, "ext-trees/trees/sub6.6.9-tree.in"}, wNull},
+        {"sub6.6.10", {3125, treeFile, "ext-trees/trees/sub6.6.10-tree.in"}, wNull},
+        {"sub6.6.11", {6250, treeFile, "ext-trees/trees/sub6.6.11-tree.in"}, wNull},
+        {"sub6.6.12", {12500, treeFile, "ext-trees/trees/sub6.6.12-tree.in"}, wNull},
+        {"sub6.6.13", {25000, treeFile, "ext-trees/trees/sub6.6.13-tree.in"}, wNull},
+        {"sub6.6.14", {50000, treeFile, "ext-trees/trees/sub6.6.14-tree.in"}, wNull},
+        {"sub6.6.15", {100000, treeFile, "ext-trees/trees/sub6.6.15-tree.in"}, wNull},
+    }).print("cases/sub6.6.in");
+    //*/
 
     return 0;
 }

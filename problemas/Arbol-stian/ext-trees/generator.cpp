@@ -49,12 +49,12 @@ void generateATree(string filename, treeStrategy strategy, int N){
     }
     case treeLikeStar:{
         //likely a star
-        t = Tree::randomPrim(N, -1000000);
+        t = Tree::randomPrim(N, -100000);
         break;
     }
     case treeLikeBamboo:{
         //likely a bamboo
-        t = Tree::randomPrim(N, 1000000);
+        t = Tree::randomPrim(N, 100000);
         break;
     }
     case treePrim:{
@@ -116,7 +116,7 @@ int main(){
     generateATree("trees/sub1.6.7-tree.in", treeRandom, 500);
     generateATree("trees/sub1.6.8-tree.in", treeCaterpillar, 1000);
     generateATree("trees/sub1.6.9-tree.in", treeLikeBamboo, 2000);
-    */
+    //*/
 
     /*
     generateATree("trees/sub2.5.1-tree.in", treeRandom, 6);
@@ -150,8 +150,9 @@ int main(){
     generateATree("trees/sub2.6.13-tree.in", treeRandom, 25000);
     generateATree("trees/sub2.6.14-tree.in", treeCaterpillar, 50000);
     generateATree("trees/sub2.6.15-tree.in", treeLikeBamboo, 100000);
-    */
+    //*/
 
+    /*
     generateATree("trees/sub3.5.1-tree.in", treeRandom, 6);
     generateATree("trees/sub3.5.2-tree.in", treeCaterpillar, 12);
     generateATree("trees/sub3.5.3-tree.in", treeLikeBamboo, 24);
@@ -183,6 +184,73 @@ int main(){
     generateATree("trees/sub3.6.13-tree.in", treeRandom, 25000);
     generateATree("trees/sub3.6.14-tree.in", treeCaterpillar, 50000);
     generateATree("trees/sub3.6.15-tree.in", treeLikeBamboo, 100000);
+    //*/
+
+    /*
+    generateATree("trees/sub4.5.1-tree.in", treeRandom, 6);
+    generateATree("trees/sub4.5.2-tree.in", treeCaterpillar, 12);
+    generateATree("trees/sub4.5.3-tree.in", treeLikeBamboo, 24);
+    generateATree("trees/sub4.5.4-tree.in", treeRandom, 48);
+    generateATree("trees/sub4.5.5-tree.in", treeCaterpillar, 97);
+    generateATree("trees/sub4.5.6-tree.in", treeLikeBamboo, 195);
+    generateATree("trees/sub4.5.7-tree.in", treeRandom, 390);
+    generateATree("trees/sub4.5.8-tree.in", treeCaterpillar, 781);
+    generateATree("trees/sub4.5.9-tree.in", treeLikeBamboo, 1562);
+    generateATree("trees/sub4.5.10-tree.in", treeRandom, 3125);
+    generateATree("trees/sub4.5.11-tree.in", treeCaterpillar, 6250);
+    generateATree("trees/sub4.5.12-tree.in", treeLikeBamboo, 12500);
+    generateATree("trees/sub4.5.13-tree.in", treeRandom, 25000);
+    generateATree("trees/sub4.5.14-tree.in", treeCaterpillar, 50000);
+    generateATree("trees/sub4.5.15-tree.in", treeLikeBamboo, 100000);
     
+    generateATree("trees/sub4.6.1-tree.in", treeRandom, 6);
+    generateATree("trees/sub4.6.2-tree.in", treeCaterpillar, 12);
+    generateATree("trees/sub4.6.3-tree.in", treeLikeBamboo, 24);
+    generateATree("trees/sub4.6.4-tree.in", treeRandom, 48);
+    generateATree("trees/sub4.6.5-tree.in", treeCaterpillar, 97);
+    generateATree("trees/sub4.6.6-tree.in", treeLikeBamboo, 195);
+    generateATree("trees/sub4.6.7-tree.in", treeRandom, 390);
+    generateATree("trees/sub4.6.8-tree.in", treeCaterpillar, 781);
+    generateATree("trees/sub4.6.9-tree.in", treeLikeBamboo, 1562);
+    generateATree("trees/sub4.6.10-tree.in", treeRandom, 3125);
+    generateATree("trees/sub4.6.11-tree.in", treeCaterpillar, 6250);
+    generateATree("trees/sub4.6.12-tree.in", treeLikeBamboo, 12500);
+    generateATree("trees/sub4.6.13-tree.in", treeRandom, 25000);
+    generateATree("trees/sub4.6.14-tree.in", treeCaterpillar, 50000);
+    generateATree("trees/sub4.6.15-tree.in", treeLikeBamboo, 100000);
+    //*/
+    
+    generateATree("trees/sub6.5.1-tree.in", treeRandom, 6);
+    generateATree("trees/sub6.5.2-tree.in", treeCaterpillar, 12);
+    generateATree("trees/sub6.5.3-tree.in", treeLikeBamboo, 24);
+    generateATree("trees/sub6.5.4-tree.in", treeRandom, 48);
+    generateATree("trees/sub6.5.5-tree.in", treeCaterpillar, 97);
+    generateATree("trees/sub6.5.6-tree.in", treeLikeBamboo, 195);
+    generateATree("trees/sub6.5.7-tree.in", treeRandom, 390);
+    generateATree("trees/sub6.5.8-tree.in", treeCaterpillar, 781);
+    generateATree("trees/sub6.5.9-tree.in", treeLikeBamboo, 1562);
+    generateATree("trees/sub6.5.10-tree.in", treeRandom, 3125);
+    generateATree("trees/sub6.5.11-tree.in", treeCaterpillar, 6250);
+    generateATree("trees/sub6.5.12-tree.in", treeLikeBamboo, 12500);
+    generateATree("trees/sub6.5.13-tree.in", treeRandom, 25000);
+    generateATree("trees/sub6.5.14-tree.in", treeCaterpillar, 50000);
+    generateATree("trees/sub6.5.15-tree.in", treeLikeBamboo, 100000);
+    
+    generateATree("trees/sub6.6.1-tree.in", treeRandom, 6);
+    generateATree("trees/sub6.6.2-tree.in", treeCaterpillar, 12);
+    generateATree("trees/sub6.6.3-tree.in", treeLikeBamboo, 24);
+    generateATree("trees/sub6.6.4-tree.in", treeRandom, 48);
+    generateATree("trees/sub6.6.5-tree.in", treeCaterpillar, 97);
+    generateATree("trees/sub6.6.6-tree.in", treeLikeBamboo, 195);
+    generateATree("trees/sub6.6.7-tree.in", treeRandom, 390);
+    generateATree("trees/sub6.6.8-tree.in", treeCaterpillar, 781);
+    generateATree("trees/sub6.6.9-tree.in", treeLikeBamboo, 1562);
+    generateATree("trees/sub6.6.10-tree.in", treeRandom, 3125);
+    generateATree("trees/sub6.6.11-tree.in", treeCaterpillar, 6250);
+    generateATree("trees/sub6.6.12-tree.in", treeLikeBamboo, 12500);
+    generateATree("trees/sub6.6.13-tree.in", treeRandom, 25000);
+    generateATree("trees/sub6.6.14-tree.in", treeCaterpillar, 50000);
+    generateATree("trees/sub6.6.15-tree.in", treeLikeBamboo, 100000);
+
     return 0;
 }
