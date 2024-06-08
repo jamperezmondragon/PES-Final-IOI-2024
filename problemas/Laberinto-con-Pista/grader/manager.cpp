@@ -114,8 +114,13 @@ int main (int argc, char **argv) {
     /********************** TEMPLATE **********************/
 
     // leer input
+    bool DUMBASS = false;
     int T;
     assertInput(scanf("%d", &T) == 1);
+    if (T == -1) {
+        assertInput(scanf("%d", &T) == 1);
+        DUMBASS = true;
+    }
 
     int N[T], ANS[T], ANS2[T], P_SZ[T], aux;
     vector<vector<int>> L[T];
@@ -165,13 +170,14 @@ int main (int argc, char **argv) {
 
     // saca respuesta preliminar
 
-    double final_ans = 1, xx;
+    float final_ans = (float)1, xx;
     for (int t = 0; t < T; t++) {
-        xx = ANS2[t] - P_SZ[t];
-        xx = xx / (2*ANS[t] - P_SZ[t]);
-        xx = 1 - xx;
+        xx = 2*(ANS[t] + 2) - P_SZ[t];
+        xx = xx / ((float)2*(ANS[t] + 2) - ANS2[t]);
         final_ans = min(final_ans, xx);
     }
+
+    final_ans = min(max(final_ans, (float)0), (float)1);
 
     fclose(grader1out);
 	fclose(grader1in);
@@ -191,25 +197,26 @@ int main (int argc, char **argv) {
     }
 
     for (int t = 0; t < T; t++) {
-        fprintf(grader1out, "%d\n", N[t]);
-        fflush(grader1out);
+        fprintf(grader2out, "%d\n", N[t]);
+        fflush(grader2out);
 
         for (int i = 0; i < N[t]; i++) {
             for (int j = 0; j < N[t]; j++)
-                fprintf(grader1out, "%d ", L[t][i][j]);
-            fprintf(grader1out, "\n");
-            fflush(grader1out);
+                fprintf(grader2out, "%d ", L[t][i][j]);
+            fprintf(grader2out, "\n");
+            fflush(grader2out);
         }
     }
 
     for (int t = 0; t < T; t++) {
         assertInput(fscanf(grader2in, "%d", &aux) == 1);
-        if (aux == -1 || aux != ANS[t]) final_ans = 0;
+        if (aux == -1) final_ans = 0;
+        if (!DUMBASS && aux != ANS[t]) final_ans = 0;
     }
 
 	fclose(grader2out);
 	fclose(grader2in);
 
-    fprintf(stdout, "%lf\n", final_ans);
+    fprintf(stdout, "%f\n", final_ans);
     return 0;
 }
