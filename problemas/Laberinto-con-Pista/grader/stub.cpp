@@ -108,12 +108,14 @@ int main(int argc, char **argv) {
         int N[T], P_SZ[T], aux;
         vector<int> PIS[T];
         vector<vector<int>> L[T];
+        bool flag = true;
 
         for (int t = 0; t < T; t++) {
             fscanf(fin, "%d", &P_SZ[t]);
             for (int i = 0; i < P_SZ[t]; i++) {
                 fscanf(fin, "%d", &aux);
                 PIS[t].push_back(aux);
+                if (aux != 0 && aux != 1) flag = false;
             }
         }
 
@@ -135,7 +137,7 @@ int main(int argc, char **argv) {
             test_y = N[t] - 2;
             swap(LL, L[t]);
             Juego(PIS[t]);
-            if (test_x == N[t] - 2 && test_y == 1) fprintf(fout, "%d\n", test_cnt);
+            if (test_x == N[t] - 2 && test_y == 1 && flag) fprintf(fout, "%d\n", test_cnt);
             else fprintf(fout, "-1\n");
             fflush(fout);
         }
