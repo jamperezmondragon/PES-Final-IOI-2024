@@ -32,17 +32,17 @@ vector<vector<int>> LL;
 
 vector<int> estado() {
     vector<int> v = {0, 0, 0, 0};
-    if (LL[test_y - 1][test_x]) v[0] = 1;
+    if (LL[test_y + 1][test_x]) v[0] = 1;
     if (LL[test_y][test_x + 1]) v[1] = 1;
-    if (LL[test_y + 1][test_x]) v[2] = 1;
+    if (LL[test_y - 1][test_x]) v[2] = 1;
     if (LL[test_y][test_x - 1]) v[3] = 1;
     return v;
 }
 
 vector<int> mover(int x) {
-    test_cnt++;
     vector<int> v = estado();
-    if (x == -1) return v;
+    if (x == -1 || x == 4) return v;
+    test_cnt++;
     if (x == 0 && v[x] == 1) test_y++;
     if (x == 1 && v[x] == 1) test_x++;
     if (x == 2 && v[x] == 1) test_y--;
@@ -90,8 +90,9 @@ int main(int argc, char **argv) {
             PIS[t] = Pista(N[t], L[t]);
 
         for (int t = 0; t < T; t++) {
-            int sz = PIS[t].size();
-            fprintf(fout, "%d", &sz);
+            int sz = 0;
+            if (!PIS[t].empty()) sz = PIS[t].size();
+            fprintf(fout, "%d\n", sz);
             fflush(fout);
             for (int i = 0; i < sz; i++)
                 fprintf(fout, "%d ", PIS[t][i]);
@@ -134,7 +135,7 @@ int main(int argc, char **argv) {
             test_y = N[t] - 2;
             swap(LL, L[t]);
             Juego(PIS[t]);
-            if (test_x == N[t] - 2 && test_y == 1) fprintf(fout, "%d\n", &test_cnt);
+            if (test_x == N[t] - 2 && test_y == 1) fprintf(fout, "%d\n", test_cnt);
             else fprintf(fout, "-1\n");
             fflush(fout);
         }
