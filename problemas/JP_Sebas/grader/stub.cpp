@@ -54,28 +54,24 @@ int main(int argc, char **argv) {
 
 	if (string(argv[3]) == "0") { // primera llamada, unica llamada para interactivos
 
-        int T;
-        fscanf(fin, "%d", &T);
+        int N, aux;
+        vector<int> AR;
 
-        int N[T], aux;
-        vector<int> AR[T];
 
-        for (int t = 0; t < T; t++) {
-            fscanf(fin, "%d", &N[t]);
-            for (int i = 0; i < N[t]; i++) {
-                fscanf(fin, "%d", &aux);
-                AR[t].push_back(aux);
-            }
+        fscanf(fin, "%d", &N);
+        for (int i = 0; i < N; i++) {
+            fscanf(fin, "%d", &aux);
+            AR.push_back(aux);
         }
 
-        for (int t = 0; t < T; t++) {
-            swap(test_ar, AR[t]);
-            aux = Reto_Sebas(N[t]);
-            if (test_call > 60) aux = INF;
-            test_call = 0;
-            fprintf(fout, "%d\n", aux);
-            fflush(fout);
-        }
+
+        swap(test_ar, AR);
+
+        aux = Reto_Sebas(N);
+
+        if (test_call > 60) aux = INF;
+        fprintf(fout, "%d\n", aux);
+        fflush(fout);
 	}
     else if (string(argv[3]) == "1") { // segunda llamada, para problemas de comunicacion
         exit(0);
