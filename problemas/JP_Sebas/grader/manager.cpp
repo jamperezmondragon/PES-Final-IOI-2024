@@ -114,42 +114,46 @@ int main (int argc, char **argv) {
     /********************** TEMPLATE **********************/
 
     // leer input
-    int T;
-    assertInput(scanf("%d", &T) == 1);
 
-    int N[T], aux;
-    vector<int> AR[T];
+    int N, aux, ANS = -1;
+    bool flag = false;
+    vector<int> AR;
 
-    for (int t = 0; t < T; t++) {
-        assertInput(scanf("%d", &N[t]) == 1);
-        for (int i = 0; i < N[t]; i++) {
-            assertInput(scanf("%d", &aux) == 1);
-            AR[t].push_back(aux);
-        }
+    assertInput(scanf("%d", &N) == 1);
+
+    if (N == -1) {
+        flag = true;
+        assertInput(scanf("%d", &N) == 1);
+    }
+
+    for (int i = 0; i < N; i++) {
+        assertInput(scanf("%d", &aux) == 1);
+        AR.push_back(aux);
     }
     fclose(stdin);
 
     // mandar input
-    fprintf(grader1out, "%d\n", T);
+
+    fprintf(grader1out, "%d\n", N);
     fflush(grader1out);
 
-    for (int t = 0; t < T; t++) {
-        fprintf(grader1out, "%d\n", N[t]);
-        fflush(grader1out);
-
-        for (int i = 0; i < N[t]; i++)
-            fprintf(grader1out, "%d ", AR[t][i]);
-        fprintf(grader1out, "\n");
-        fflush(grader1out);
-    }
+    for (int i = 0; i < N; i++)
+        fprintf(grader1out, "%d ", AR[i]);
+    fflush(grader1out);
 
     // leer el output procesado
 
+    for (int i = 0; i < N; i++)
+        if (AR[i] == AR[(i + N/2)%N]) ANS = 1;
+
     bool final_ans = true;
 
-    for (int t = 0; t < T; t++) {
-        assertInput(fscanf(grader1in, "%d", &aux) == 1);
-        if (aux < 0 || aux >= N[t] || AR[t][aux] != AR[t][(aux + N[t]/2)%N[t]]) final_ans = false;
+    assertInput(fscanf(grader1in, "%d", &aux) == 1);
+
+    if (flag && aux * ANS < 0) final_ans = false;
+    if (!flag) {
+        if (ANS == -1 && ANS != aux) final_ans = false;
+        if (ANS == 1 && (aux < 0 || aux >= N || AR[aux] != AR[(aux + N/2)%N])) final_ans = false;
     }
 
     fclose(grader1out);
