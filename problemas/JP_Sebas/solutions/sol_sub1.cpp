@@ -10,5 +10,5 @@ int Reto_Sebas(int N) {
     for (int i = 0; i < N; i++) {
         if (ar[i] == ar[(i + N/2)%N]) return i;
     }
-    return 0;
+    return -1;
 }
