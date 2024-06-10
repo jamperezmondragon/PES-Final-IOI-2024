@@ -25,7 +25,9 @@
 
     \hh{Detalles de Implementación} 
 
-    Implementa dos funciones. La primera función, $Pista()$, recibe una variable $N$, el tamaño del laberinto, y un vector de vectores, $Laberinto$, con la información de las celdas bloqueadas y vacías. Esta función debe regresar la pista, como un vector de enteros (estos enteros deben ser 1 o 0). La segunda función, $Juego()$, recibe un vector de enteros, la pista que generó el primer programa, y tiene acceso a la función $mover()$ para interactuar con el laberinto. Cuando llamas dicha función, debes indicar un parámetro, que detalla el tipo de movimiento. Los parámetros y procesos disponibles son los siguientes:
+    Implementa dos funciones. La primera función, $Pista()$, recibe una variable $N$, el tamaño del laberinto, y un vector de vectores, $Laberinto$, con la información de las celdas bloqueadas y vacías. Esta función debe regresar la pista, como un vector de enteros (estos enteros deben ser 1 o 0). 
+    
+    La segunda función, $Juego()$, recibe un vector de enteros, la pista que generó el primer programa, y tiene acceso a la función $mover()$ para interactuar con el laberinto. Cuando llamas dicha función, debes indicar un parámetro, que detalla el tipo de movimiento. Los parámetros y procesos disponibles son los siguientes:
 
     \begin{center}
         \begin{tabular}{|c|c|}
@@ -47,10 +49,10 @@
         \end{tabular}
     \end{center}
 
-    Cada vez que llames la función mover, el proceso puede ser exitoso o fallar.  Si te moviste a una casilla vacía, o finalizaste el juego en la casilla adecuada el proceso es exitoso. En cualquier otro caso, el proceso falla y el jurado mata el programa, y recibes 0 puntos en el caso que se esté procesando.
+    Cada vez que llames la función mover, el proceso puede ser exitoso o fallar.  Si te moviste a una casilla vacía, o finalizaste el juego en la casilla adecuada el proceso es exitoso. En cualquier otro caso, el proceso falla, el jurado mata el programa, y recibes 0 puntos en el caso que se esté procesando.
     
     
-    independientemente del parámetro, la función regresará  un arreglo de 4 booleanos. Llamémosle $a$. $a[i]$ es verdadero si $mover(i)$ sería un movimiento válido. 
+    Independientemente del parámetro, la función regresará  un arreglo de 4 booleanos. Llamémosle $a$. $a[i]$ es verdadero si $mover(i)$ sería un movimiento válido. 
 
     Además, para llevar a cabo la interacción, debes incluir la librería \textit{``Laberinto.h"} con el comando \textit{\#include ``Laberinto.h"}.
     
@@ -126,7 +128,7 @@
     \hh{Consideraciones}
 
         \begin{itemize}
-            \item $N \le 200$.
+            \item $N \le 500$.
             \item Los 4 bordes del tablero consisten de celdas bloqueadas.
             \item Se garantiza que las celdas de las esquinas inferior izquierda y superior derecha están vacías, y que existe al menos un camino de celdas vacías entre ellas.
             \item Si la función \textit{Pista()} regresa un vector que no consista únicamente de $0$s y $1$s, recibirás 0 puntos.
@@ -146,6 +148,7 @@
             \item Para obtener los 60 puntos, el valor de $M$ debe ser mínimo para el laberinto dado y $P$ debe ser a lo más  $P_j$.
             \item Cualquier solución que tenga un $P$ mayor, será normalizada entre $P_j$ y 2 veces el valor óptimo de $M$, es decir, los puntos que obtendrás por cada caso serán igual a
             \[1 - \frac{P_j - P}{P_j - 2M}.\]
+            \item sSi tu solución tiene $P$ mayor a $2M$, obtendrás 0 puntos.
         \end{itemize}
     \end{itemize}
     En cualquier caso, si tu programa tiene $P$ mayor que 2 veces el valor óptimo de $M$, o si tu segundo programa no logra llegar a la esquina superior derecha del laberinto, recibirá 0 puntos por ese caso.
