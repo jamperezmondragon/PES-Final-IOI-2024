@@ -11,75 +11,84 @@
 \begin{document}
     \hh{Cynthia Juego}
     
-    {\itshape Este es un problema de Solo Salida}
+    {\itshape Este es un problema}
     
     \vspace{10pt}
 
+    \hh{Problema}
+    
     Hay una mesa redonda con $1 \le N \le 16$ barriles, equidistantes al rededor del borde de la mesa. Cada barril tiene una moneda dentro, que puede estar boca arriba o boca abajo. La posición original de las monedas las elige Cynthia. Cynthia reta a Juan a un juego. En un movimiento, Juan elige las posiciones de algunos de los barriles y se los dice a Cynthia. Luego, Juan cierra los ojos, y Cynthia gira la mesa de tal forma que las posiciones se rotan tanto como ella quiera. Después, Cynthia voltea las monedas dentro de los barriles en las posiciones que eligió Juan. Juan nunca sabe el estado de las monedas, ni cuanto rota la mesa Cynthia en sus movimientos. Juan Gana si en algún momento, todas las monedas están boca abajo. Cynthia gana, si Juan no gana después de $2^N$ movimientos. 
     Debes elegir, para distintos valores de $N$, con qué jugador jugar, e idear una estrategia ganadora.
+
+    \hh{Detalles de implementación}
+
+    Debes implementar la función \textit{Decision()}, que recibe un entero $N$, y responde un entero $K$. $K$ debe ser igual a 1 si decides jugar con Juan, y $0$ si decides jugar con Cynthia. Cualquier otro valor de $K$ resultará en un veredicto de respuesta incorrecta. Debes implementar dos funciones, cada una con la estrategia de uno de los jugadores. 
     
-    \hh{Problema}
+    La función \textit{Cynthia()}, recibe un entero $N$, y puede llamar la función \textit{Inicializa()}, que recibe un vector de  $N$ enteros (deben ser 0 o 1), los estados de las monedas inicialmente (un 1 representa una moneda boca arriba, y un 0 boca abajo). Y regresa un vector de $N$ enteros (todos 0 o 1), el primer movimiento de Juan (un 1 representa que se cambia de estado la moneda en esa posición). Para los siguientes movimientos, puede llamar la función \textit{Turno()}, esta función recibe un entero $0 \le x < N$, y rota a la derecha la mesa por el factor $x$. Regresa un vector con $N$ enteros, describiendo el siguiente movimiento de Juan. Este vector puede consistir de valores iguales a 1 o 0, o consistir únicamente de $N$ valores iguales a -1. Este vector representa que Juan se dió por vencido. Para poder llevar a cabo la interacción, debes incluir en tu programa la librería \textit{``Juego.h"}, con el comando \textit{\#include ``Juego.h"}.
 
-    Para cada subtarea del problema, hay dos casos. El primer caso, tiene descrita la estrategia de Juan. 
+    La función \textit{Juan()}, implementa la estrategia de Juan. Recibe un entero $N$, y debe regresar un vector de vectores de ints, cada vector de ints debe consistir de $N$ elementos iguales a $1$ o $0$, y representan las posiciones que cambian de estado, y las que no, en cada movimiento. 
 
-    La primera línea contiene el valor de $N$, la segunda línea contiene la cantidad de movimientos en su estrategia $S$, y las siguientes $S$ líneas contienen una secuencia de $1 \le K \le N$ enteros $0 \le x_i < N$ separados por espacios: las posiciones de los barriles que voltea en ese movimiento.
+    Un ejemplo de como se vería el programa es el siguiente:
 
-    Para este tipo de casos, el archivo de salida debe contener una estrategia con la que Cynthia puede asegurar ganar ante la estrategia de Juan.
+    \begin{minted}{c++}
+        #include "Juego.h"
+        #include <bits/stdc++.h>
+        using namespace std;
 
-    Se garantiza que esto siempre es posible.
+        int Decision(int N) {
+            // Implementa esta función.
+        }
 
-    Los otros casos, son archivos con un solo número, el valor de $N$. En estos casos, el archivo de salida debe contener una estrategia para Juan, con la que pueda asegurar ganar, independientemente de cómo juegue Cynthia.
+        void Cynthia(int N) {
+            // Implementa esta función.
+        }
+
+        vector<vector<int>> Juan(int N) {
+            // Implementa esta función.
+        }
+    \end{minted}
+
+    Considera que el evaluador llamará la función \textit{decision()} \textbf{múltiples} veces por cada caso de prueba.
+
+    \hh{Ejemplo}
+
+    {\itshape Ejemplo 1:}
+
+        El evaluador llama la función \textit{Decision(2)}. Imaginemos que tu programa regresa:
+
+        \begin{itemize}
+            \item Digamos que tu programa regresa 0. Entonces, el evaluador llama la función \textit{Cynthia(2)}. Luego, tu código podría llamar la función \textit{Inicializa(\{1, 0\})}. En este caso, habría una moneda boca arriba, y otra boca abajo. 
+            Entonces, tu código llama la función \textit{Turno(1)} o \textit{Turno(0)}, recibiendo los vectores que representan los movimientos de juan, hasta que alguna de las dos funciones responda el vector \textit{\{-1, -1\}}. Entonces habrá terminado el juego, y deberás finalizar la función.
+            \item Por otro lado, digamos que tu programa regresa 1. Es decir, eligió jugar con Juan. Entonces el evaluador llamaría la función \textit{Juan(2)}. Un ejemplo de un vector de vectores que podría regresar es el siguiente:
+
+            \begin{center}
+                {\itshape \{\{1, 0\}, \{1, 1\}, \{0, 1\}, \{1, 0\} \} }
+            \end{center}
+
+            Dependiendo de si este arreglo permite ganar con Cynthia jugando de manera óptima o no, el jurado te otorgará los puntos correspondientes.
+            
+        \end{itemize}
+
+    \hh{Consideraciones}
+
+        \begin{itemize}
+            \item $1 \le N \le 16$.
+            \item La cantidad máxima de movimientos en ambos casos es $2^N$.
+            \item No seguir los lineamientos de implementación será premiado con 0 puntos.
+            \item Se garantiza que el jurado siempre ejecuta una estrategia ganadora.
+        \end{itemize}
+
+
+    \hh{Subtareas}
     
-    Se garantiza que esto no siempre será posible. 
+        \begin{itemize}
+            \item (10 puntos) $N \le 3$.
+            \item (20 puntos) $N \le 6$.
+            \item (30 puntos) $N \le 10$.
+            \item (40 puntos) $N \le 16$.
+        \end{itemize}
 
-    
-    \hh{Detalles de salida} 
-
-        En los casos del primer tipo, la primera línea de tus archivos debe contener $1 \le K \le N$ enteros positivos separados por espacios: las posiciones de las monedas que inicialmente están boca arriba. La siguiente línea, debe contener un entero $M$, la cantidad de movimientos. Luego, las siguientes $M$ líneas deben contener un entero positivo $1 \le x \le N$, el factor de rotación en dicho movimiento. 
-
-        En los casos del segundo tipo, tus archivos deben contener un entero $M$, la cantidad de movimientos. Luego, las siguientes $M$ líneas deben contener $1 \le K \le N$ enteros $0\le x_i < N$ separados por espacios: las posiciones de los barriles que volteas en ese movimiento.
-
-    \eject
-    
-    \hh{Evaluación}
-
-    Para cada caso, si tu archivo de salida no resuelve el problema de dicho caso, recibirás 0 puntos. 
-    
-    La cantidad de puntos que da el caso del primer tipo de la subtarea $i$ es $a_i$, y la cantidad de puntos que da el caso del segundo tipo es $b_i$. Estos valores están escondidos, y algunos podrían ser 0. En la siguiente tabla, damos los valores de $N$ y $a_i + b_i$ para cada subtarea.
-    
-    
-
-    \begin{center}
-        \begin{tabular}{|c|c|c|}
-            \hline
-            Subtarea & Valor de $N$ & Puntaje total de la subtarea ($a_i + b_i$) \\
-            \hline
-            1 & $N = 2$ & 5 puntos.  \\
-            \hline
-            2 & $N = 3$ & 2 puntos. \\
-            \hline
-            3 & $N = 4$ & 10 puntos. \\
-            \hline
-            4 & $N = 5$ & 4 puntos. \\
-            \hline
-            5 & $N = 6$ & 5 puntos. \\
-            \hline
-            6 & $N = 7$ & 4 puntos. \\
-            \hline
-            7 & $N = 8$ & 20 puntos. \\
-            \hline
-            8 & $N = 10$ & 5 puntos. \\
-            \hline
-            9 & $N = 12$ & 5 puntos. \\
-            \hline
-            10 & $N = 14$ & 5 puntos. \\
-            \hline
-            11 & $N = 15$ & 5 puntos. \\
-            \hline
-            12 & $N = 16$ & 30 puntos. \\
-            \hline
-        \end{tabular}
-    \end{center}
+        Adicionalmente, para cada subtarea, si resuelves correctamente todos los casos en ella donde Cynthia tiene estrategia ganadora, recibirás el 30\% de los puntos que represente. Si resuelves correctamente aquellos donde Juan tiene estrategia ganadora, recibirás el 70\% de los puntos que represente.
     
         
 
