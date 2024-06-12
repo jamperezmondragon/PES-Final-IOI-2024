@@ -135,7 +135,7 @@ testcase generate_random(int N, int Q) {
   X.N = N;
   X.Q = Q;
   X.a.resize(N); iota(X.a.begin(), X.a.end(), 0);
-  RngShuffle(X.a);
+  RngShuffle(X.a); // comenta cuando generes subtask 2
   vector<int> v = X.a;
 
   for (int i = 0; i < Q; i++) {
@@ -155,11 +155,22 @@ testcase generate_random(int N, int Q) {
 }
 
 int main() {
+
+  /* subtask 2
   cout << 11 << endl;
   for (int i = 0; i < 10; i++) {
     testcase X = generate_random(100, 150);
     X.print();
   }
   testcase X = generate_random(1000, 500);
+  X.print();
+  */
+  //subtask 2 y 4
+  cout << 101 << endl;
+  for (int i = 0; i < 100; i++) {
+    testcase X = generate_random(1000, 1500);
+    X.print();
+  }
+  testcase X = generate_random(100000, 50000);
   X.print();
 }
