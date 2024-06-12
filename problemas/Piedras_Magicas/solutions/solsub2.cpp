@@ -2,11 +2,11 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
+#define ll long long int
 long long int Piedras_Magicas(int N, int A, int B, int Q, vector<int> a ) 
 {
 	ll n=N;
-	ll a=A,b=B,q=Q;
+	ll ah=A,b=B,q=Q;
 	vector<ll>qu(q+1);
 	for(int k=1;k<=q;k++)
 	{
@@ -23,7 +23,7 @@ long long int Piedras_Magicas(int N, int A, int B, int Q, vector<int> a )
 			}
 		}
 	}
-	dp[0][a][b]=0;
+	dp[0][ah][b]=0;
 	for(ll k=1;k<=q;k++)
 	{
 		for(ll i=1;i<=n;i++)
