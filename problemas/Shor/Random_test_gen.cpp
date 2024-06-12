@@ -102,9 +102,13 @@ class testcase {
       for (auto e : a) if (e > N - 1 || e < 0) return 0;
       for (auto e : u) if (e > N - 1 || e < 0) return 0;
       for (auto e : v) if (e > N - 1 || e < 0) return 0;
+      return 1;
     }
 
     void print() {
+      if (!validate()) {
+        cout << "ERRORRRR\n"; return;
+      }
       cout << N << endl << Q << endl;
       for (auto e : a) cout << e << " ";
       cout << endl;
@@ -134,7 +138,7 @@ testcase generate_random(int N, int Q) {
   X.Q = Q;
   X.a.resize(N); iota(X.a.begin(), X.a.end(), 0);
 
-  RngShuffle(X.a);
+  RngShuffle(X.a); // comenta esto cuando generes subtask 2.
 
   for (int i = 0; i < Q; i++) {
     X.u.push_back(rng() % N);
@@ -144,11 +148,23 @@ testcase generate_random(int N, int Q) {
 }
 
 int main() {
+
+  /* subtask 3
   cout << 11 << endl;
   for (int i = 0; i < 10; i++) {
     testcase X = generate_random(100, 100);
     X.print();
   }
   testcase X = generate_random(1000, 1000);
+  X.print();
+  */
+  
+  //subtask 2 y 4
+  cout << 101 << endl;
+  for (int i = 0; i < 100; i++) {
+    testcase X = generate_random(1000, 1000);
+    X.print();
+  }
+  testcase X = generate_random(100000, 100000);
   X.print();
 }
