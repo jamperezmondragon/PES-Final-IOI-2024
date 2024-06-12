@@ -154,7 +154,7 @@ int main() {
   //int n = 1, 2, 3, 4 subtask 1.
   dfs(n);
   testcase X;
-  X.a(n); iota(X.a.begin(), X.a.end(), 0);
+  X.a.resize(n); iota(X.a.begin(), X.a.end(), 0);
   X.N = n;
   X.Q = swaps.size();
   for (auto [x, y] : swaps) X.u.push_back(x), X.v.push_back(y);
