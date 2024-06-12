@@ -118,8 +118,8 @@ class testcase {
 
 };
 
-vector<int> V, P = {0, 1, 2, 3, 4, 5, 6};
-vector<bool> vis(7, false);
+vector<int> V, P = {0, 1, 2, 3, 4, 5, 6, 7};
+vector<bool> vis(8, false);
 vector<testcase> X;
 vector<array<int, 2>> swaps;
 
@@ -149,10 +149,13 @@ void dfs(int n = 7, int cnt = 0) {
 }
 
 int main() {
-  dfs();
+  int n = 8; // subtask 2 y 4
+  //int n = 5 subtask 3
+  //int n = 1, 2, 3, 4 subtask 1.
+  dfs(n);
   testcase X;
-  X.a = {0, 1, 2, 3, 4, 5, 6};
-  X.N = 7;
+  X.a(n); iota(X.a.begin(), X.a.end(), 0);
+  X.N = n;
   X.Q = swaps.size();
   for (auto [x, y] : swaps) X.u.push_back(x), X.v.push_back(y);
   X.print();
