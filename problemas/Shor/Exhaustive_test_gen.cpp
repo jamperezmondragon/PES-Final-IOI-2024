@@ -104,6 +104,10 @@ class testcase {
     }
 
     void print(string s) {
+
+      if (!validate()) {
+        cout << "ERRORRR\n"; return; 
+      }
       ofstream coutt;
       cout.open(s);
 
@@ -113,7 +117,7 @@ class testcase {
       for (auto e : u) coutt << e << " ";
       coutt << endl;
       for (auto e : v) coutt << e << " ";
-      cout << endl;
+      coutt << endl;
       vector<int> dummy = solution::El_Robot_Shor(N, Q, a, u, v);
       for (auto e : dummy) coutt << e << " ";
       coutt << endl;
