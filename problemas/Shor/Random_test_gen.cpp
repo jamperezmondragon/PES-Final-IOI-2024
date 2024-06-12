@@ -140,6 +140,7 @@ testcase generate_random(int N, int Q) {
     X.u.push_back(rng() % N);
     X.v.push_back(rng() % N);
   }
+  return X;
 }
 
 int main() {
