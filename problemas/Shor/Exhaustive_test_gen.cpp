@@ -103,17 +103,20 @@ class testcase {
       for (auto e : v) if (e > N - 1 || e < 0) return 0;
     }
 
-    void print() {
-      cout << N << endl << Q << endl;
-      for (auto e : a) cout << e << " ";
-      cout << endl;
-      for (auto e : u) cout << e << " ";
-      cout << endl;
-      for (auto e : v) cout << e << " ";
+    void print(string s) {
+      ofstream coutt;
+      cout.open(s);
+
+      coutt << N << endl << Q << endl;
+      for (auto e : a) coutt << e << " ";
+      coutt << endl;
+      for (auto e : u) coutt << e << " ";
+      coutt << endl;
+      for (auto e : v) coutt << e << " ";
       cout << endl;
       vector<int> dummy = solution::El_Robot_Shor(N, Q, a, u, v);
-      for (auto e : dummy) cout << e << " ";
-      cout << endl;
+      for (auto e : dummy) coutt << e << " ";
+      coutt << endl;
     }
 
 };
@@ -158,5 +161,5 @@ int main() {
   X.N = n;
   X.Q = swaps.size();
   for (auto [x, y] : swaps) X.u.push_back(x), X.v.push_back(y);
-  X.print();
+  X.print("sub1.1.in"); //cambia el número de subtas y caso.
 }
