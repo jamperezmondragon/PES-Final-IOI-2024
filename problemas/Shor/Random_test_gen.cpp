@@ -105,20 +105,24 @@ class testcase {
       return 1;
     }
 
-    void print() {
+    void print(string s) {
+
       if (!validate()) {
-        cout << "ERRORRRR\n"; return;
+        cout << "ERRORRR\n"; return; 
       }
-      cout << N << endl << Q << endl;
-      for (auto e : a) cout << e << " ";
-      cout << endl;
-      for (auto e : u) cout << e << " ";
-      cout << endl;
-      for (auto e : v) cout << e << " ";
-      cout << endl;
+      ofstream coutt;
+      coutt.open(s);
+
+      coutt << N << endl << Q << endl;
+      for (auto e : a) coutt << e << " ";
+      coutt << endl;
+      for (auto e : u) coutt << e << " ";
+      coutt << endl;
+      for (auto e : v) coutt << e << " ";
+      coutt << endl;
       vector<int> dummy = solution::El_Robot_Shor(N, Q, a, u, v);
-      for (auto e : dummy) cout << e << " ";
-      cout << endl;
+      for (auto e : dummy) coutt << e << " ";
+      coutt << endl;
     }
 
 };
@@ -166,5 +170,5 @@ int main() {
     X.print();
   }
   testcase X = generate_random(100000, 100000);
-  X.print();
+  X.print("sub1.2.in"); // cambiar subtask adecuada y numero de caso
 }
