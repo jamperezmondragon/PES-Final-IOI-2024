@@ -101,6 +101,7 @@ class testcase {
       for (auto e : a) if (e > N - 1 || e < 0) return 0;
       for (auto e : u) if (e > N - 1 || e < 0) return 0;
       for (auto e : v) if (e > N - 1 || e < 0) return 0;
+      return 1;
     }
 
     void print(string s) {
@@ -109,7 +110,7 @@ class testcase {
         cout << "ERRORRR\n"; return; 
       }
       ofstream coutt;
-      cout.open(s);
+      coutt.open(s);
 
       coutt << N << endl << Q << endl;
       for (auto e : a) coutt << e << " ";
