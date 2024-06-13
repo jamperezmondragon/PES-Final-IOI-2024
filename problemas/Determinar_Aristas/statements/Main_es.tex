@@ -17,7 +17,7 @@
     
     \hh{Problema}
     
-        Te es dado un entero $N$ y $N - 1$ aristas bidireccionales. Estas aristas conectan $N$ vértices de tal forma que exista un camino\footnote{Secuencia de vértices tal que cualesquiera dos adyacentes pertenecen a una arista del grafo.} entre cualesquiera dos vértices (es decir, forman un árbol). Debes especificar pesos para cada una de las aristas, de tal forma que se cumpla la siguiente propiedad en el árbol:
+        Te es dado un entero $N$ y $N - 1$ aristas bidireccionales. Estas aristas conectan $N$ vértices de tal forma que exista un camino\footnote{Secuencia de vértices tal que cualesquiera dos adyacentes pertenecen a una arista del grafo.} entre cualesquiera dos vértices (es decir, forman un árbol). Debes especificar pesos no negativos para cada una de las aristas, de tal forma que se cumpla la siguiente propiedad en el árbol:
         
         Para cada entero $x$ entre $1$ y $\left\lfloor \frac{2N^2}{9} \right\rfloor$, existe una pareja de vértices $i, j$, tal que la suma de los pesos en el camino simple\footnote{Que no repite aristas.} entre $i$ y $j$ es igual a $x$.
     
@@ -74,6 +74,7 @@ vector<array<long long, 3>> Determina_aristas(int N,
             \item Los vectores $u$ y $v$ tendrán exactamente $N - 1$ elementos.
             \item Para cada $0 \le i \le N - 2$, se cumple que $0 \le u[i] \neq v[i] \le N - 1$. 
             \item Se garantiza que el grafo formado por las aristas es un árbol.
+            \item Los pesos que elijas deben ser no negativos.
             \item sea $S_N$ la suma de los valores de $N$ sobre todas las llamadas a la función en un caso. Se cumple que $S_N \le 2000$.
         \end{itemize}
     
