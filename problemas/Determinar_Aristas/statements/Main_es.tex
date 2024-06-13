@@ -23,14 +23,15 @@
     
     \hh{Detalles de Implementación}
 
-        Debes implementar la función \textit{Determinar\_aristas()}. Esta función recibe un entero $N$ y dos vectores $u$ y $v$, cada uno con $N - 1$ elementos. para cada $0 \le i \le N - 2$, $u[i]$ y $v[i]$ son los vértices que se conectan con la arista $i$. Esta función debe regresar un vector con $N - 1$ elementos, los pesos que elegiste.
+        Debes implementar la función \textit{Determinar\_aristas()}. Esta función recibe un entero $N$ y dos vectores $u$ y $v$, cada uno con $N - 1$ elementos. para cada $0 \le i \le N - 2$, $u[i]$ y $v[i]$ son los vértices que se conectan con la arista $i$. Esta función debe regresar un vector con $N - 1$ arreglos de 3 elementos, los primeros dos elementos de estos arreglos deben contener los vértices de una arista, y el tercero el peso que elegiste. Las aristas en este vector pueden ir en cualquier orden.
         La función se vería así:
 
 \begin{minted}{c++}
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> Determina_aristas(int N, vector<int> u, vector<int> v) {
+vector<array<long long, 3>> Determina_aristas(int N,
+    vector<int> u, vector<int> v) {
     // Implementa esta función.
 }
 \end{minted}
@@ -69,7 +70,7 @@ vector<int> Determina_aristas(int N, vector<int> u, vector<int> v) {
 
     \hh{Consideraciones}
         \begin{itemize}
-            \item $1 \le N \le 2000$.
+            \item $4 \le N \le 2000$.
             \item Los vectores $u$ y $v$ tendrán exactamente $N - 1$ elementos.
             \item Para cada $0 \le i \le N - 2$, se cumple que $0 \le u[i] \neq v[i] \le N - 1$. 
             \item Se garantiza que el grafo formado por las aristas es un árbol.
@@ -80,10 +81,11 @@ vector<int> Determina_aristas(int N, vector<int> u, vector<int> v) {
 
 
     \begin{itemize}
-        \item (6 puntos) $N \le 4$.
+        \item (3 puntos) $N \le 4$.
         \item (7 puntos) Obtendrás los puntos de esta subtarea si tu elección de aristas cumple con la condición para $1 \le x \le N$.
-        \item (22 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = i + 2$.
-        \item (25 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = \left\lfloor\frac{i}{2} \right\rfloor$.
-        \item (40 puntos) Sin restricciones adicionales.
+        \item (15 puntos) Para todo $0 \le i \le N - 1$  se cumple que la cantidad de aristas que tienen a $i$ como vértice es $1$ o $N - 1$.
+        \item (21 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = i + 2$.
+        \item (21 puntos) Para todo $0 \le i \le N - 2$, se cumple que $u[i] = i + 1, v[i] = \left\lfloor\frac{i}{2} \right\rfloor$.
+        \item (38 puntos) Sin restricciones adicionales.
     \end{itemize}
 \end{document}
