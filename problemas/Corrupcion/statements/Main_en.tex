@@ -9,80 +9,82 @@
 \usemintedstyle{pastie}
 
 \begin{document}
-    \hh{Cynthia's Game}
+    \hh{Cynthia Game}
     
-    {\itshape This is an Output Only problem}
+    {\itshape This is a problem}
     
     \vspace{10pt}
 
-    There is a round table with $1 \le N \le 16$ barrels, equidistant around the edge of the table. Each barrel has a coin inside, which can be heads or tails. The original state of the coins is chosen by Cynthia. Cynthia challenges Juan to a game. In one move, Juan chooses the positions of some of the barrels and tells Cynthia. Then, Juan closes his eyes, and Cynthia rotates the table as much as she wants so that the positions are rotated. Afterwards, Cynthia flips the coins inside the barrels in the positions chosen by Juan. Juan never knows the state of the coins, nor how much Cynthia rotates the table in her moves. Juan wins if at any moment, all the coins are tails. Cynthia wins if Juan does not win after $2^N$ moves. 
-    You must choose, for different values of $N$, with which player to play, and devise a winning strategy.
-    
     \hh{Problem}
-
-    For each subtask of the problem, there are two test cases. The first case describes Juan's strategy. 
-
-    The first line of this type of test cases contains the value of $N$, the second line contains the number of moves in his strategy, $S$, and the following $S$ lines contain a sequence of $1 \le K \le N$ integers $0 \le x_i < N$ separated by spaces: the positions of the barrels he flips in that move.
-
-    For this type of case, the output file must contain a strategy with which Cynthia can ensure to win against Juan's strategy.
-
-    It is guaranteed that this is always possible.
-
-    The other type of test cases are files with a single number, the value of $N$. In these test cases, the output file must contain a strategy for Juan, with which he can ensure to win, regardless of how Cynthia plays.
     
-    It is guaranteed that this will not always be possible. 
+    There is a round table with $1 \le N \le 16$ barrels, equidistant around the edge of the table. Each barrel has a coin inside, which can be heads or tails. The initial position of the coins is chosen by Cynthia. Cynthia challenges Juan to a game. In one move, Juan chooses the positions of some of the barrels and tells Cynthia. Then, Juan closes his eyes, and Cynthia rotates the table so that the positions are rotated as much as she wants. Afterward, Cynthia flips the coins inside the barrels in the positions chosen by Juan. Juan never knows the state of the coins, nor how much Cynthia rotates the table in her moves. Juan wins if at any moment all the coins are tails up. Cynthia wins if Juan does not win after $2^N$ moves. You must choose, for different values of $N$, which player to play with, and devise a winning strategy.
 
-    
-    \hh{Output Details} 
+    \hh{Implementation Details}
 
-        In the first type of test cases, the first line of your files must contain $1 \le K \le N$ positive integers separated by spaces: the positions of the coins that are initially heads. The next line must contain an integer $M$, the number of moves. Then, the next $M$ lines must contain a positive integer $1 \le x \le N$, the rotation factor in that move. 
+    You must implement the function \textit{Decision()}, which receives an integer $N$, and returns an integer $K$. $K$ must be equal to 1 if you decide to play with Juan, and 0 if you decide to play with Cynthia. Any other value of $K$ will result in a wrong answer verdict. You must implement two functions, each with the strategy of one of the players.
+    
+    The function \textit{Cynthia()} receives an integer $N$, and can call the function \textit{Inicializa()}, which receives a vector of $N$ integers (must be 0 or 1), the initial states of the coins (a 1 represents a heads up coin, and a 0 tails up). And returns a vector of $N$ integers (all 0 or 1), the first move of Juan (a 1 represents that the coin in that position changes state). For the next moves, it can call the function \textit{Turn()}, this function receives an integer $0 \le x < N$, and rotates the table to the right by the factor $x$. Returns a vector with $N$ integers, describing Juan's next move. This vector can consist of values equal to 1 or 0, or consist only of $N$ values equal to -1. This vector represents that Juan has given up. To carry out the interaction, you must include in your program the library \textit{``Juego.h"}, with the command \textit{\#include ``Juego.h"}.
 
-        In the second type of test cases, your files must contain an integer $M$, the number of moves. Then, the next $M$ lines must contain $1 \le K \le N$ integers $0 \le x_i < N$ separated by spaces: the positions of the barrels you flip in that move.
+    The function \textit{Juan()} implements Juan's strategy. It receives an integer $N$, and must return a vector of vectors of ints, each vector of ints must consist of $N$ elements equal to $1$ or $0$, and represent the positions that change state, and those that do not, in each of his moves.
 
-    \eject
-    
-    \hh{Evaluation}
+    An example of what the program would look like is the following:
 
-    For each case, if your output file does not solve the problem for that case, you will receive 0 points. 
-    
-    The number of points that the first type of case of subtask $i$ gives is $a_i$, and the number of points that the second type of case gives is $b_i$. These values are hidden, and some might be 0. In the following table, we give the values of $N$ and $a_i + b_i$ for each subtask.
-    
-    
+    \begin{minted}{c++}
+        #include "Juego.h"
+        #include <bits/stdc++.h>
+        using namespace std;
 
-    \begin{center}
-        \begin{tabular}{|c|c|c|}
-            \hline
-            Subtask & Value of $N$ & Total score of the subtask ($a_i + b_i$) \\
-            \hline
-            1 & $N = 2$ & 5 points.  \\
-            \hline
-            2 & $N = 3$ & 2 points. \\
-            \hline
-            3 & $N = 4$ & 10 points. \\
-            \hline
-            4 & $N = 5$ & 4 points. \\
-            \hline
-            5 & $N = 6$ & 5 points. \\
-            \hline
-            6 & $N = 7$ & 4 points. \\
-            \hline
-            7 & $N = 8$ & 20 points. \\
-            \hline
-            8 & $N = 10$ & 5 points. \\
-            \hline
-            9 & $N = 12$ & 5 points. \\
-            \hline
-            10 & $N = 14$ & 5 points. \\
-            \hline
-            11 & $N = 15$ & 5 points. \\
-            \hline
-            12 & $N = 16$ & 30 points. \\
-            \hline
-        \end{tabular}
-    \end{center}
-    
-        
+        int Decision(int N) {
+            // Implement this function.
+        }
 
+        void Cynthia(int N) {
+            // Implement this function.
+        }
+
+        vector<vector<int>> Juan(int N) {
+            // Implement this function.
+        }
+    \end{minted}
+
+    Consider that the grader will call the function \textit{Decision()} \textbf{multiple} times for each test case.
+
+    \hh{Example}
+
+    {\itshape Example 1:}
+
+        The grader calls the function \textit{Decision(2)}. Let's imagine that your program returns:
+
+        \begin{itemize}
+            \item Let's say your program returns 0. Then, the grader calls the function \textit{Cynthia(2)}. Then, your code could call the function \textit{Inicializa(\{1, 0\})}. In this case, there would be one heads up coin, and another tails up. 
+            Then, your code calls the function \textit{Turn(1)} or \textit{Turn(0)}, receiving the vectors that represent Juan's moves, until one of the two function calls responds with the vector \textit{\{-1, -1\}}. Then the game will end, and you must terminate the program.
+            \item On the other hand, let's say your program returns 1. That is, it chose to play with Juan. Then the grader would call the function \textit{Juan(2)}. An example of a vector of vectors that it could return is the following:
+
+            \begin{center}
+                {\itshape \{\{1, 0\}, \{1, 1\}, \{0, 1\}, \{1, 0\}\} }
+            \end{center}
+
+            Depending on whether this array allows Juan to win with Cynthia playing optimally or not, the jury will award you the corresponding points.
+            
+        \end{itemize}
+
+    \hh{Considerations}
+
+        \begin{itemize}
+            \item $1 \le N \le 16$.
+            \item The maximum number of moves in both cases is $2^N$.
+            \item Not following the implementation guidelines will be awarded 0 points.
+            \item It is guaranteed that the jury always executes a winning strategy.
+        \end{itemize}
+
+    \hh{Subtasks}
     
-    
+        \begin{itemize}
+            \item (10 points) $N \le 3$.
+            \item (20 points) $N \le 6$.
+            \item (30 points) $N \le 10$.
+            \item (40 points) $N \le 16$.
+        \end{itemize}
+
+        Additionally, for each subtask, if you correctly solve all cases where Juan has a winning strategy, you will receive 70\% of the points it represents.
 \end{document}
