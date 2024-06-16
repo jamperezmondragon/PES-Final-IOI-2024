@@ -57,6 +57,17 @@ bool Raichu(int N, int M) {
         Decimos que durante una ejecución involucraste la posición $i$, si llamaste la función {\itshape modificar()} o {\itshape leer()} con la posición $i$ (si llamas las dos sigue contando como solamente una posición). 
         
         Definamos también, $C_2$, como la máxima cantidad de posiciones distintas del arreglo binario que involucras a partir de la segunda vez que se ejecuta tu programa.
+
+        Por ejemplo, asume que $N = 2$. Si en la primera ejecución tu programa llamó las funciones 
+        \begin{itemize}
+            \item \textit{leer(1), leer(2), modificar(2)}
+        \end{itemize}
+        y en la segunda ejecición tu programa llama la función
+        \begin{itemize}
+            \item \textit{leer(1)}
+        \end{itemize}
+        El valor de $C_1$ sería 2, y el valor de $C_2$ sería 1. 
+        
         
         Si tu programa resuelve efectivamente el problema, obtendrás puntos basado en:
         
