@@ -24,7 +24,7 @@
 
     \hh{Implementation Details}
 
-        You must implement the function \textit{Equipo\_sonrisas()}. This function receives an integer $N$ (the size of the graph) and an integer $K$ (the device's parameter). This function should return a pair of integers: if the graph is connected, it should return the pair $(-1, -1)$. If the graph is not connected, it should return a pair of vertices in different components. 
+        You must implement the function \textit{Equipo\_Sonrisas()}. This function receives an integer $N$ (the size of the graph) and an integer $K$ (the device's parameter). This function should return a pair of integers: if the graph is connected, it should return the pair $(-1, -1)$. If the graph is not connected, it should return a pair of vertices in different components. 
         
         During your program, you can call the function \textit{Dispositivo\_Miku()}. This function receives 2 integers $a, b$ and returns $-1$ if $dist(a, b) < K$, $0$ if $dist(a, b) = K$, and $1$ if $dist(a, b) > K$.
         To call this function, you must include the library \textit{``Sonrisas.h"} with the command \textit{\#include ``Sonrisas.h"}.
@@ -35,7 +35,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-pair<int, int> Equipo_sonrisas(int N, int K) {
+pair<int, int> Equipo_Sonrisas(int N, int K) {
     // Implement this function.
 }
 
@@ -48,9 +48,9 @@ pair<int, int> Equipo_sonrisas(int N, int K) {
         \begin{itemize}
             \item The grader calls the function 
             \begin{center}
-                \textit{Equipo\_sonrisas(5, 2)}
+                \textit{Equipo\_Sonrisas(5, 2)}
             \end{center}
-            The hidden graph is as follows:
+            The hidden graph is illustrated by the following image:
             \begin{center}
                 \includegraphics[scale=0.3]{ej1.png}
             \end{center}
@@ -103,24 +103,25 @@ pair<int, int> Equipo_sonrisas(int N, int K) {
                      \hline 
                 \end{tabular}
             \end{center}
-            \item If the return value of the function called by the grader is $(-1, -1)$, the veredict would be wrong answer. Otherwise, if the return value is, for example, $(1, 4)$, the veredict would be accepted.
+            \item If the return value of the function called by the grader is $(-1, -1)$, the verdict would be wrong answer. Otherwise, if the return value is, for example, $(1, 4)$, the verdict would be accepted.
         \end{itemize}
         
     \hh{Constraints}
         \begin{itemize}
             \item $1 \le K < N \le 1000$.
-            \item In all cases, the number of times you call the function \textit{Dispositivo\_Miku()} must be less than $\frac{2N^2}{K}$. Otherwise, you will receive a wrong answer veredict.
-            \item If the function returns $(-1, -1)$ and the graph is not connected, or if it returns a pair of connected nodes, you will receive a wrong answer veredict.
+            \item In all cases, the number of times you call the function \textit{Dispositivo\_Miku()} must be less than the query limit. It is fixed at $\frac{2(N - 1)^2}{K}$ unless otherwise specified. If you surpass the query limit, you will receive a wrong answer verdict.
+            \item If the function returns $(-1, -1)$ and the graph is not connected, or if it returns a pair of connected nodes, you will receive a wrong answer verdict.
             \item Let $S_N$ be the sum of the values of $N$ for each call made by the grader in a testcase. It is guaranteed that $S_N \le 1000$.
         \end{itemize}
     
     \hh{Subtasks}
 
     \begin{itemize}
-        \item (5 points) $K = N - 1$.
-        \item (10 points) $K \le 4$.
-        \item (33 points) $K = \frac{N}{2}$.
-        \item (22 points) The graph is a forest (there are no cycles, that is, there is no paths that don't repeat edges and start and end at the same vertex).
-        \item (30 points) No additional constraints.
+        \item (3 points) $K = N - 1$.
+        \item (8 points) $K \le 4$. 
+        \item (32 points) $K = \frac{N}{2}$.
+        \item (21 points) The graph is a forest. The query limit is $\frac{2N^2}{K}$.
+        \item (25 points) The query limit is $\frac{2N^2}{K}$.
+        \item (11 points) no additional constraints.
     \end{itemize}
 \end{document}
