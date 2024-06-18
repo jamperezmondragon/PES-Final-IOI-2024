@@ -17,11 +17,11 @@
     
     \hh{Problem}
     
-        You are given an integer $N$ and $N - 1$ bidirectional edges. These edges connect $N$ vertices in such a way that there is a path\footnote{A path is defined as a sequence of vertices, such that for any two consecutive vertices, there is an edge connecting them.} between any two vertices (i.e. they form a tree). Additionally, each vertex has a weight. For all paths, we define their weight as the product of the number of edges in it and the {\bfseries greatest common divisor} of each of the weights of the vertices in the path. Determine the simple path (a path that does not repeat edges) with the maximum weight.
+        You are given an integer $N$ and $N - 1$ bidirectional edges with weights. These edges connect $N$ vertices in such a way that there is a path\footnote{A path is defined as a sequence of vertices, such that for any two consecutive vertices, there is an edge connecting them.} between any two vertices (i.e. they form a tree). For all paths, we define their weight as the product of the number of edges in it and the {\bfseries greatest common divisor} of each of the weights of the edges in the path. Determine the simple path (a path that does not repeat edges) with the maximum weight.
     
     \hh{Implementation Details}
 
-        You must implement the function \textit{Arbolstian()}. This function receives an integer $N$, 2 vectors $u, v$ with $N - 1$ elements, and a vector $w$, with $N$ elements. For each $0 \le i \le N - 2$, $u[i]$ and $v[i]$ are the vertices that are connected by the edge $i$. For each $0 \le i \le N - 1$, $w[i]$ is the weight of the vertex $i$. This function must return an integer, the maximum weight of a path in the tree.
+        You must implement the function \textit{Arbolstian()}. This function receives an integer $N$ and 3 vectors $u, v$ and $w$ with $N - 1$ elements For each $0 \le i \le N - 2$, $u[i]$ and $v[i]$ are the vertices that are connected by the edge $i$, and $w[i]$ is it's weight. This function must return an integer, the maximum weight of a path in the tree.
         Your program should look like this:
 
 \begin{minted}{c++}
@@ -42,7 +42,7 @@ long long int Arbolstian(int N, vector<int> u, vector<int> v, vector<int> w) {
         \begin{itemize}
             \item The grader calls the function 
             \begin{center}
-                \textit{Arbolstian(6, \{0, 0, 0, 2, 3\}, \{1, 2, 3, 4, 5\}, \{8, 2, 2, 4, 4, 8\})}
+                    \textit{Arbolstian(6, \{0, 0, 0, 2, 3\}, \{1, 2, 3, 4, 5\}, \{2, 2, 4, 2, 4\})} 
             \end{center}
             the tree in this example is illustrated in the following image:
             
@@ -77,7 +77,7 @@ long long int Arbolstian(int N, vector<int> u, vector<int> v, vector<int> w) {
         \begin{itemize}
             \item The grader calls the function 
             \begin{center}
-                \textit{Arbolstian(9, \{0, 1, 2, 3, 4, 5, 6, 7\}, \{1, 2, 3, 4, 5, 6, 7, 8\}, \{3, 3, 15, 10, 14, 7, 21, 6, 2\})}
+                \textit{Arbolstian(9, \{0, 1, 2, 3, 4, 5, 6, 7\}, \{1, 2, 3, 4, 5, 6, 7, 8\}, \{3, 3, 5, 2, 7, 7, 3, 2\})}
             \end{center}
             the tree in this example is illustrated by the following image:
             \begin{center}
@@ -90,10 +90,9 @@ long long int Arbolstian(int N, vector<int> u, vector<int> v, vector<int> w) {
     \hh{Constraints}
         \begin{itemize}
             \item $1 \le N \le 2\times10^5$.
-            \item The vectors $u$ and $v$ will have exactly $N - 1$ elements.
-            \item The vector $w$ will have exactly $N$ elements.
+            \item The vectors $u, v$ and $w$ will have exactly $N - 1$ elements.
             \item For each $0 \le i \le N - 2$, it holds that $0 \le u[i] \neq v[i] < N$. 
-            \item For each $0 \le i \le N - 1$, it holds that $1 \le w[i] \le 10^6$.
+            \item For each $0 \le i \le N - 2$, it holds that $1 \le w[i] \le 10^6$.
             \item It is guaranteed that the graph formed by the edges is a tree.
             \item Let $S_N$ be the sum of all values of $N$ across all function calls. It is guaranteed that $S_N \le 2\times 10^5$.
         \end{itemize}
@@ -103,9 +102,9 @@ long long int Arbolstian(int N, vector<int> u, vector<int> v, vector<int> w) {
 
     \begin{itemize}
         \item (3 points) $N, S_N \le 2000$.
-        \item (9 points) For all $0 \le i \le N - 1$, it holds that $w[i] = 1$.
-        \item (11 points) For all $0 \le i \le N - 2$, it holds that $\gcd(w[u[i]], w[v[i]])$ is a prime number.
-        \item (22 points) For all $0 \le i \le N - 1$, it holds that $w[i]$ is a power of 2.
+        \item (9 points) For all $1 \le i \le N - 2$, it holds that $w[i] = w[i - 1]$.
+        \item (11 points) For all $0 \le i \le N - 2$, it holds that $s[i]$ is a prime number.
+        \item (22 points) For all $0 \le i \le N - 2$, it holds that $w[i]$ is a power of 2.
         \item (22 points) For all $0 \le i \le N - 2$, it holds that $u[i] = i, v[i] = i + 1$.
         \item (33 points) No additional restrictions.
     \end{itemize}
