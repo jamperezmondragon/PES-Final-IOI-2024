@@ -4,3 +4,4 @@ La organización de tareas se encuentra en la hoja de "Settear Problemas" de [es
 
 - Static ranking of the first exact mirror of our TST: https://ranking.olimpiadadeinformatica.org.mx/RankingPESFinal2024/
 
+- Static ranking of the curated round: https://ranking.olimpiadadeinformatica.org.mx/MexicoTSTCuratedStaticRanking/
