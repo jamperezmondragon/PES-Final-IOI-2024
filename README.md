@@ -12,3 +12,6 @@ This problems were used to determine the Mexican team for the 36th International
 - Static ranking of the first exact mirror of our TST: https://ranking.olimpiadadeinformatica.org.mx/RankingPESFinal2024/
 
 - Static ranking of the curated round: https://ranking.olimpiadadeinformatica.org.mx/MexicoTSTCuratedStaticRanking/
+
+
+You can also find an editorial for the problems in the Curated Round [here](https://hackmd.io/iRI1n40ySVKQ8foCfpgErg), written by Singapore's Coaches.
